@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<!-- 
+
+  "THE BEER-WARE LICENSE" (Revision 42):
+  AvichalRakesh wrote this file.  As long as you retain this notice you
+  can do whatever you want with this stuff. If we meet some day, and you think
+  this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
+ 
+-->
+
+<html>
+<head>
+	<title>Clock</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/weather-icons.min.css">
+
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+
+	<div class="clock-container">
+
+		<div class="clock" id="hours">00</div>
+		<div class="clock dots">:</div>
+		<div class="clock" id="minutes">00</div>
+		<div class="clock" id="seconds">00</div>
+		<div class="clock" id="am-pm">AM</div>
+		<br>
+		<div class="date-div" id="day">Sun,</div>
+		<div class="date-div" id="date">00</div>
+		<div class="date-div" id="month">Jan</div>
+		<div class="date-div" id="year">0000</div>
+
+	</div>
+
+	<div class="weather-container">
+		<div class="weather-icon">
+		</div>
+		<div class="temp-div">
+			<span class="temp-span">00</span> &deg;C
+		</div>
+		<div class="feels-like-div">
+			<span class="feels-like-span">00</span> &deg;C
+		</div>
+		<div class="weather-summary-div">
+			Mostly Cloudy
+		</div>
+		<div class="rain-chances-div">
+			<i class="wi wi-umbrella"></i>
+			<span class="preci-prob-span">0%</span>
+		</div>
+		
+	</div>
+
+	<div class="notif-container">
+		<ul class="notif-list">
+		</ul>
+	</div>
+
+</body>
+</html>
