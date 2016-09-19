@@ -10,6 +10,7 @@
  */
 
 $latlng = "43.077739,-89.418135"; /* Lat, Lng */
+
 $apiKey = /* Your API Key Here */;
 
 /* To obtain an API Key register at "https://developer.forecast.io/" */
