@@ -58,7 +58,7 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
     
   2. Move the files to your web server:
   
-    Copy the downloaded / cloned files to the root your web server.
+    Copy the downloaded/cloned files to the root your web server.
     For Raspberry Pi, the default location is **/var/www/html/**
 
   3. Test the web server:
@@ -116,7 +116,7 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
     
       If it doesn't, make sure that the app has notification access and connection to server was successful.
       
-    NOTE: Notification Mirroring uses long polling to mirrror notifications, i.e. front-end sends a request to the backend every 2 seconds to sync up new notifications. This is fine with Pi, but may cause problems with other web servers.
+    **NOTE: Notification Mirroring uses long polling to mirrror notifications, i.e. front-end sends a request to the backend every 2 seconds to sync up new notifications. This is fine with Pi, but may cause problems with other web servers.**
       
   * Removing Notification Mirroring:
     
