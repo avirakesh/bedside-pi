@@ -122,3 +122,11 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
     
     1. Open [js/script.js](js/script.js) on your web server
     2. Go to line 67 and follow the directions in the comments.
+
+####And that is it, enjoy your BedSide Pi!!
+
+## License
+
+"THE BEER-WARE LICENSE" (Revision 42):
+
+AvichalRakesh  wrote this project. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return. Avichal Rakesh
