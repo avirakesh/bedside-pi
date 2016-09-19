@@ -94,9 +94,7 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
     BedSide Pi is capable of mirroring notifications from your Android device. 
   
     1. Dowload BedSide Pi Companion app (_link coming soon_) from Google Play Store 
-    
     2. Open the app, and allow notification acccess
-    
     3. Set up URL:
       1. Fill in the URL of your web server. 
     
