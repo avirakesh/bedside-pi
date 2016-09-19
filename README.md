@@ -7,7 +7,7 @@ Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 BedSide Pi provides information at a glance. Just a glace at the screen will tell you the most vital information. 
 - Time (Who would've thunk?)
 - Current Weather (Optional)
-- Current Notifications (Optional) **(Android Only)** (Requires BedSide Pi Companion app - Link will be added soon)
+- Current Notifications (Optional) **(Android Only)** (Requires [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi))
 
 ### Requirements
 BedSide Pi requires a bare minimum of
@@ -17,7 +17,7 @@ BedSide Pi requires a bare minimum of
 
 ####Optional Items
 - API Key from [Forecast.io](https://developer.forecast.io/). This is used to access weather information.
-- Android Phone with BedSide Pi companion app (_link coming soon_)
+- Android Phone with [BedSide Pi companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi)
 
 ## Setting Things Up 
 **Note: This process assumes you have a Raspberry Pi 3. If you have some other model, or are using this on a web hosting, you might have to change a few things.**
@@ -93,7 +93,7 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
 
     BedSide Pi is capable of mirroring notifications from your Android device. 
   
-    1. Dowload BedSide Pi Companion app (_link coming soon_) from Google Play Store 
+    1. Dowload [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi) from Google Play Store 
     2. Open the app, and allow notification acccess
     3. Set up URL:
       1. Fill in the URL of your web server. 
