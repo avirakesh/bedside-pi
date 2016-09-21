@@ -4,7 +4,7 @@ Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 ![alt-tag](images/pi_image.png)
 
 ## General Info 
-BedSide Pi provides information at a glance. Just a glace at the screen will tell you the most vital information. 
+BedSide Pi provides information at a glance. Just a glance at the screen will tell you the most vital information. 
 - Time (Who would've thunk?)
 - Current Weather (Optional)
 - Current Notifications (Optional) **(Android Only)** (Requires [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi))
