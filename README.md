@@ -65,11 +65,8 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
   
     Go to http://localhost/ on a broswer in your Pi. You should see the clock working and the weather set to their default values.
 
-  4. (Optional) Ensure that PHP scripts have write permission:
-  
-    Ensure that the PHP scripts have write permission on you server. Write permission is needed to write to the [notification.json](notification.json) and the [key.txt](key.txt)
+  4. If you want notification mirroring, ensure that PHP scripts have write permission:
 
-    These are used for notification mirroring.
 
 ####3. Setting up weather (or removing it)
 
