@@ -16,7 +16,7 @@ BedSide Pi requires a bare minimum of
 - A screen to display the information
 
 ####Optional Items
-- API Key from [Forecast.io](https://developer.forecast.io/). This is used to access weather information.
+- API Key from [DarkSky](https://darksky.net/dev/). This is used to access weather information.
 - Android Phone with [BedSide Pi companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi)
 
 ## Setting Things Up 
@@ -74,9 +74,9 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
 ####3. Setting up weather (or removing it)
 
   * Setting up weather:
-    1. Grab the API key from [developer.forecast.io](http://developer.forecast.io)
+    1. Grab the API key from [darksky.net/dev](https://darksky.net/dev/)
     2. Open [get-weather.php](get-weather.php) on your web server
-    3. Copy the API key from [developer.forecast.io](http://developer.forecast.io) to **$apiKey**
+    3. Copy the API key from [darksky.net/dev](https://darksky.net/dev/) to **$apiKey**
     4. Set **$latlng** to your latitude and longitude
     5. (Optional) Open [js/script.js](js/script.js) on your web server and set the refresh interval
     

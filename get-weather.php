@@ -9,13 +9,12 @@
  * ----------------------------------------------------------------------------
  */
 
-$latlng = "43.077739,-89.418135"; /* Lat, Lng */
-
+$latlng = "51.6546,-45.54546"; /* Lat, Lng */
 $apiKey = /* Your API Key Here */;
 
-/* To obtain an API Key register at "https://developer.forecast.io/" */
+/* To obtain an API Key register at "https://darksky.net/dev/" */
 
-$url = "https://api.forecast.io/forecast/" . $apiKey . "/" . $latlng . "?units=si";
+$url = "https://api.darksky.net/forecast/" . $apiKey . "/" . $latlng . "?units=si";
 
 $input_json = json_decode(file_get_contents($url), true);
 
