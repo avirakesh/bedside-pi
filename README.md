@@ -3,17 +3,18 @@ Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 
 ![alt-tag](screenshot/img.png)
 
-** UPDATE: bedside-pi has been updated to use NodeJS with SocketsIO rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/master)**
+**UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with [Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/master)**
 
 ## General Info 
 BedSide Pi provides information at a glance. Just a glance at the screen will tell you the most vital information. 
 - Time (Who would've thunk?)
 - Current Weather (Optional)
 - Current Notifications (Optional) **(Android Only)** (Requires [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi))
+  - iOS version is in works!
 
 ### Requirements
 BedSide Pi requires a bare minimum of
-- Raspberry Pi (Tested on Model 3, your mileage may vary), or any other web server.
+- Raspberry Pi (Tested on Model 3, your mileage may vary) running Raspbian/PIXEL.
   - Raspberry Pi should be connected to a network
 - A screen to display the information
 
@@ -21,36 +22,37 @@ BedSide Pi requires a bare minimum of
 - API Key from [DarkSky](https://darksky.net/dev/). This is used to access weather information.
 - Android Phone with [BedSide Pi companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi)
 
+
 ## Setting Things Up 
 **Note: This process assumes you have a Raspberry Pi 3. If you have some other model, or are using this on a web hosting, you might have to change a few things.**
 
-####1. Setting up Pi as a web server
-  1. Install Apache:
+####1. Setting up Node.js on Pi
+  
+  1. Installing Node.js
+  
+    If you haven't done so in a while, run the following commands:
+     
+        sudo apt-get update
+        sudo apt-get upgrade
+        
+    Now your Pi is ready to go. Use the following commands to install Node and npm:
     
-    Install Apache using the following command:
-  
-        sudo apt-get install apache2 -y
-      
-  2. Test web server:
-  
-      Open a browser on Pi and go to **http://localhost/**
-
-  3. Install PHP:
-
-    Install PHP using the following command:
-  
-        sudo apt-get install php5 libapache2-mod-php5 -y
-  
-  4. Test PHP:
-  
-    Test PHP using the following command:
-    
-        php -version
+      Add the package repository:
+        
+        curl -sLS https://apt.adafruit.com/add | sudo bash
+        
+     Install Node:
+     
+        sudo apt-get install node
+        
+     Test Node:
+        
+        node -v
 
 
-**NOTE: For a more details on how to setup Pi as a web server, [go here](https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md)**
+**NOTE: The repository is managed by adafruit. To know more about how to setup Node.js on Pi, go to the [official website](https://learn.adafruit.com/node-embedded-development/installing-node-dot-js)**
 
-Now that you Pi is successfully set up as a web server, we can go to the next step.
+Now that Node.js is successfully setup on Pi, we can continue to the next step.
 
 ####2. Setting up BedSide Pi
   
@@ -58,32 +60,39 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
 
     Either clone this project or download the entire project as a zip, your wish!
     
-  2. Move the files to your web server:
+  2. Move the files to your Pi:
   
-    Copy the downloaded/cloned files to the root your web server.
-    For Raspberry Pi, the default location is **/var/www/html/**
-
-  3. Test the web server:
-  
-    Go to http://localhost/ on a broswer in your Pi. You should see the clock working and the weather set to their default values.
-
-  4. If you want notification mirroring, ensure that PHP scripts have write permission:
+    Move the files to the directory where you want the application to run. Make sure you have write permission in that directory. (For ex. ~/BedSidePi/)
+    
+  3. Install dependencies:
+    
+    Open terminal and set your current working directory as the directory chosen above.
+    
+    For example
+        
+        cd ~/BedSidePi
+        
+    Once the current directory has been set, run the following command:
+    
+        npm install
+        
+    You should see the dependencies install to the working directory.
 
 
 ####3. Setting up weather (or removing it)
 
   * Setting up weather:
     1. Grab the API key from [darksky.net/dev](https://darksky.net/dev/)
-    2. Open [get-weather.php](get-weather.php) on your web server
-    3. Copy the API key from [darksky.net/dev](https://darksky.net/dev/) to **$apiKey**
-    4. Set **$latlng** to your latitude and longitude
-    5. (Optional) Open [js/script.js](js/script.js) on your web server and set the refresh interval
+    2. Open [modules/prefs.js](modules/prefs.js) on your Pi
+    3. Copy the API key from [darksky.net/dev](https://darksky.net/dev/) to **apiKey** (Note: Enclose in single quotes)
+    4. Set **latlng** to your latitude and longitude
+    5. (Optional) Open [assets/js/script.js](assets/js/script.js) on your web server and set the refresh interval
     
   * Removing weather:
-    1. Open [index.html](index.html) on your web server
+    1. Open [views/index.html](views/index.html) on your web server
     2. Comment out the div which contains weather information
-    3. Open [js/script.js](js/script.js) on your web server
-    4. Follow the comments at line 54
+    3. Open [assets/js/script.js](assets/js/script.js) on your web server
+    4. Follow the comments at line 60
     
 
 ####4. Setting up Notification Mirroring (or removing it)
@@ -95,7 +104,7 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
     1. Dowload [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi) from Google Play Store 
     2. Open the app, and allow notification acccess
     3. Set up URL:
-      1. Fill in the URL of your web server. 
+      1. Fill in the URL of your Node.js web server (Ex. 192.168.2.16:8080).
     
         Use **ifconfig** to get the IP Address of your Pi.
         
@@ -115,12 +124,19 @@ Now that you Pi is successfully set up as a web server, we can go to the next st
     
       If it doesn't, make sure that the app has notification access and connection to server was successful.
       
-    **NOTE: Notification Mirroring uses long polling to mirrror notifications, i.e. front-end sends a request to the backend every 2 seconds to sync up new notifications. This is fine with Pi, but may cause problems with other web servers.**
+    **~~NOTE: Notification Mirroring uses long polling to mirrror notifications, i.e. front-end sends a request to the backend every 2 seconds to sync up new notifications. This is fine with Pi, but may cause problems with other web servers.~~ Not anymore, the front end interfaces with the backend using Sockets**
       
   * Removing Notification Mirroring:
+  
+    * Delete the companion app making sure there are no notifications already mirrored.
     
-    1. Open [js/script.js](js/script.js) on your web server
-    2. Go to line 67 and follow the directions in the comments.
+####5. Running bedside-pi:
+  
+  Run the following command from the directory where project lives:
+  
+      node server.js
+      
+  Leave the terminal window running and use a browser to access the clock.
 
 ####And that is it, enjoy your BedSide Pi!!
 
