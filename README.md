@@ -1,7 +1,7 @@
 # BedSide Pi
 Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 
-![alt-tag](images/pi_image.png)
+![alt-tag](screenshot/img.png)
 
 ## General Info 
 BedSide Pi provides information at a glance. Just a glance at the screen will tell you the most vital information. 
