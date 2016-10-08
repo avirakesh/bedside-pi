@@ -1,4 +1,13 @@
-var express = require('express');
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * AvichalRakesh wrote this file.  As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
+ * ----------------------------------------------------------------------------
+ */
+
+ var express = require('express');
 var port = 8080; // default = 8080 
 				 // change to 80 if you don't want to type ':8080' at the end.
 var app = express();
