@@ -24,7 +24,7 @@ BedSide Pi requires a bare minimum of
 
 
 ## Setting Things Up 
-**Note: This process assumes you have a Raspberry Pi 3. If you have some other model, or are using this on a web hosting, you might have to change a few things.**
+**Note: This process assumes you have a Raspberry Pi 3. If you have some other model, you might have to change a few things.**
 
 ####1. Setting up Node.js on Pi
   
