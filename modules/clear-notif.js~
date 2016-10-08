@@ -1,7 +1,0 @@
-var fs = require ('fs');
-
-module.exports.clear_json = function(res) {
-    fs.writeFileSync('./notifications.json', '[]');
-    console.log ('notifications.json > []');
-    res.setHeader(200);
-}
