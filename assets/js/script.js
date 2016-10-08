@@ -8,48 +8,54 @@
  */
 
 
-var h = -1;
-var m = -1;
-var s = -1;
-var day = -1;
-var date = -1;
-var month = -1;
-var year = -1;
+ var h = -1;
+ var m = -1;
+ var s = -1;
+ var day = -1;
+ var date = -1;
+ var month = -1;
+ var year = -1;
 
-var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
-var lastWeather = 0; 
+ var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
+ var lastWeather = 0; 
 
-var notifInterval = 2; /* Set notification refresh interval (in seconds) */
-var lastNotif = 0;
+ var notifInterval = 2; /* Set notification refresh interval (in seconds) */
+ var lastNotif = 0;
 
-var key = -50;
+ var key = -50;
 
-$(function () {
-	startTime();
+ $(function () {
+ 	var socket = io();
 
-	$('.weather-container').click(function() {
-		updateWeather();
-	});
-});
+ 	socket.on('update_notifs', function() {
+ 		updateNotif();
+ 	});
 
-function startTime() {
-	var today = new Date();
+ 	startTime();
 
-	var hh = today.getHours();
-	var mm = today.getMinutes();
-	var ss = today.getSeconds();
+ 	$('.weather-container').click(function() {
+ 		updateWeather();
+ 	});
+ });
 
-	if (h != hh) {
-		h = hh;
-		hh = checkAMPM();
-		$('#hours').text(checkTime(hh));
+ function startTime() {
+ 	var today = new Date();
 
-		updateDate(today);
-	}
+ 	var hh = today.getHours();
+ 	var mm = today.getMinutes();
+ 	var ss = today.getSeconds();
 
-	if (m != mm) {
-		m = mm;
-		$('#minutes').text(checkTime(m));
+ 	if (h != hh) {
+ 		h = hh;
+ 		hh = checkAMPM();
+ 		$('#hours').text(checkTime(hh));
+
+ 		updateDate(today);
+ 	}
+
+ 	if (m != mm) {
+ 		m = mm;
+ 		$('#minutes').text(checkTime(m));
 
 		// To remove weather, comment out from here... 
 		if (lastWeather == 0) {
@@ -64,11 +70,7 @@ function startTime() {
 		s = ss;
 		$('#seconds').text(checkTime(s));
 
-		if (lastNotif == 0) {
-			updateNotif();
-		}
-
-		lastNotif = (lastNotif + 1) % notifInterval;
+		document.title = checkTime(h) + ':' + checkTime(m) + ':' + checkTime(s);
 	}
 
 	t = setTimeout(function() {
@@ -189,12 +191,12 @@ function updateWeather() {
 	// console.log(url);
 
 	$.ajax({
-		url: 'http://' + window.location.host + '/get-weather.php',
+		url: 'http://' + window.location.host + '/get-weather',
 		success: function (data) {
 			// console.log(data);
 			parseWeather(data);
 		}
-	});
+	}); 
 }
 
 function parseWeather(data) {
@@ -212,13 +214,10 @@ function parseWeather(data) {
 
 function updateNotif() {
 	$.ajax({
-		url: 'http://' + window.location.host + '/get-notifications.php?key=' + key,
+		url: 'http://' + window.location.host + '/get-notifications.php',
 		success: function(data) {
-			// console.log(data);
-			if (data != '') {
-				key = data['key'];
-				parseNotif(data['items']);
-			}
+			console.log(data);
+			parseNotif(data);
 		}
 	});
 }
@@ -228,7 +227,7 @@ function parseNotif (data) {
 	var html = '';	
 	for (var i = 0; i < data.length; i++) {
 		// console.log(data[i]['package']);
-		html += '<li class="notif-list-item"><img class="notif-image" src="images/' + data[i]['package'] + '.png"></li>'
+		html += '<li class="notif-list-item"><img class="notif-image" src="assets/images/' + data[i]['package'] + '.png"></li>'
 	}
 
 	$('.notif-list').html(html);

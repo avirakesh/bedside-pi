@@ -1,0 +1,4 @@
+var latlng = '43.077739,-89.418135';
+var apiKey = 'b5cf3fc223e511cceb7173610307f154';
+var siUnits = true;
+

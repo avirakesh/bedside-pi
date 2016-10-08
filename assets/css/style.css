@@ -51,6 +51,7 @@ body {
 	display: inline-block;
 	vertical-align: center;
 	padding: 5px;
+	font-kerning: none;
 }
 
 #seconds {
