@@ -3,7 +3,7 @@ Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 
 ![alt-tag](screenshot/img.png)
 
-**UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with [Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/master)**
+**UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with [Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/apache)**
 
 ## General Info 
 BedSide Pi provides information at a glance. Just a glance at the screen will tell you the most vital information. 
