@@ -55,6 +55,10 @@ app.get('/get-notifications.php', function(req, res) {
 	getNotifs.getNotifications(res, io);
 });
 
+app.get('/check-connection.php', function(req, res) {
+	res.send('"Success"');
+});
+
 app.use('/assets', express.static('assets'));
 
 io.on('connection', function(socket) {
