@@ -19,11 +19,6 @@
  var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
  var lastWeather = 0; 
 
- var notifInterval = 2; /* Set notification refresh interval (in seconds) */
- var lastNotif = 0;
-
- var key = -50;
-
  $(function () {
  	var socket = io();
 
