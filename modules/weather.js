@@ -32,6 +32,8 @@ exports.getWeather = function(latlng, apiKey, si, res) {
 	out['precipProbability'] = current['precipProbability'];
 	out['temp'] = current['temperature'];
 	out['appTemp'] = current['apparentTemperature'];
+	out['sunrise'] = json['daily']['data'][0]['sunriseTime'];
+	out['sunset'] = json['daily']['data'][0]['sunsetTime'];
 
 	res.contentType('application/json');
 	res.send(JSON.stringify(out));

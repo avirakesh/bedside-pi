@@ -204,7 +204,19 @@ function parseWeather(data) {
 		$('.preci-prob-span').text((data['precipProbability'] * 100) + "%");
 	}
 	$('.temp-span').text(data['temp']);
-	$('.feels-like-span').text(data['appTemp']);
+    $('.feels-like-span').text(data['appTemp']);
+
+    var timestamp = Date.now();
+
+    var imgUrl = 'assets/images/weather';
+    if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
+	imgUrl = imgUrl + '/day/';
+    } else {
+	imgUrl = imgUrl + '/night/';
+    }
+
+    $('.background-img').attr('src', imgUrl + data['icon'] + '.jpg');
+    
 }
 
 function updateNotif() {
