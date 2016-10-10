@@ -6,7 +6,7 @@ Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 **UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with [Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/apache)**
 
 ## General Info 
-BedSide Pi provides information at a glance. Just a glance at the screen will tell you the most vital information. 
+BedSide Pi provides information at a glance.
 - Time (Who would've thunk?)
 - Current Weather (Optional)
 - Current Notifications (Optional) **(Android Only)** (Requires [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi))
@@ -89,10 +89,10 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
     5. (Optional) Open [assets/js/script.js](assets/js/script.js) on your web server and set the refresh interval
     
   * Removing weather:
-    1. Open [views/index.html](views/index.html) on your web server
+    1. Open [views / index.html](views/index.html) on your web server
     2. Comment out the div which contains weather information
-    3. Open [assets/js/script.js](assets/js/script.js) on your web server
-    4. Follow the comments at line 60
+    3. Open [assets / js / script.js](assets/js/script.js) on your web server
+    4. Follow the comments at line 55
     
 
 ####4. Setting up Notification Mirroring (or removing it)
@@ -108,17 +108,17 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
     
         Use **ifconfig** to get the IP Address of your Pi.
         
-        Note: Make sure the URL is preceded by http:// or https://
+        Note: Make sure the URL is preceded by http:// or https:// and succedeed by the port.
         
       2. Use **TEST CONNECTION** to check if your phone could talk to the web server
       3. If the connection was successful, press **UPDATE** to set the URL.
       
     4. Setup mirroring over WiFi:
     
-      Unless you are running a web server with a static IP address, it is recommended to restrict notification mirroring to WiFi only.
+      Unless you are running a pi with a static IP address, it is recommended to restrict notification mirroring to WiFi only.
       
       1. Turn on 'Mirror over WiFi only', if not already checked.
-      2. (Optional - but recommended) Set WiFi SSID to mirror the notification over. Setting this will mirror notification only if the phone is connected to the specified WiFi. Press **UPDATE** once the SSID is set. Please note the whitespaces of SSID.
+      2. (Optional - but recommended) Set WiFi SSID to mirror the notification over. Setting this will mirror notification only if the phone is connected to the specified WiFi. Press **UPDATE** once the SSID is set. Please note the whitespaces in SSID.
       
     5. Once everything is set, and URL connection is successful, tap **Send Test Notification** to see if notification mirroring works. 
     
