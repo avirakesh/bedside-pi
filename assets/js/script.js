@@ -215,7 +215,14 @@ function parseWeather(data) {
 	imgUrl = imgUrl + '/night/';
     }
 
-    $('.background-img').attr('src', imgUrl + data['icon'] + '.jpg');
+    imgUrl = imgUrl + data['icon'] + '.jpg'; 
+    
+    if ($('.background-img').attr('src') != imgUrl) {
+	$('.background-img').fadeOut(250, function() {
+	    $('.background-img').attr('src', imgUrl);
+	    $('.background-img').fadeIn(250);
+	});
+    }
     
 }
 
