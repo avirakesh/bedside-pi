@@ -230,7 +230,7 @@ function updateNotif() {
 	$.ajax({
 		url: 'http://' + window.location.host + '/get-notifications.php',
 		success: function(data) {
-			console.log(data);
+			// console.log(data);
 			parseNotif(data);
 		}
 	});
