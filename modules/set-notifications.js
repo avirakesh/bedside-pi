@@ -7,26 +7,29 @@
  * ----------------------------------------------------------------------------
  */
 
-var fs = require ('fs');
-module.exports = {};
+ var fs = require ('fs');
+ module.exports = {};
 
-module.exports.setNotifications = function (body, res, io) {
-	fs.writeFile('./assets/images/' + body.package + '.png', body.image, 'base64');
+ module.exports.setNotifications = function (body, res, io) {
 
-	// console.log(body.package);
+ 	var notifications = JSON.parse(body.notifications);
 
-	var obj = JSON.parse(fs.readFileSync('./notifications.json', 'utf8'));
-	index = obj.length;
+ 	var write = new Array();
+ 	var index = 0;
+ 	
+ 	notifications.forEach(function(notification) {
+ 		write[index] = {};
+ 		write[index].package = notification['package'];
+ 		write[index].image = notification['image'];
 
-	obj[index] = {};
+ 		fs.writeFile('./assets/images/' + notification['package'] + '.png', notification['imageString'], 'base64'); 
+ 		
+ 		index = index + 1;
+ 	});
 
-	obj[index].package = body.package;
-	obj[index].image = true;
+ 	fs.writeFile('./notifications.json', JSON.stringify(write, null, 2), function(err) {
+ 		io.emit('update_notifs');
+ 		res.status(200).send('Success');
+ 	});
 
-	fs.writeFile('./notifications.json', JSON.stringify(obj, null, 2), function(err) {
-		// console.log ('notifications.json > ' + obj[index])
-
-		io.emit('update_notifs');
-		res.status(200).send('Success');
-	});	
-}
+ }
