@@ -201,13 +201,13 @@ function parseWeather(data) {
 	if (data['precipProbability'] == 0) {
 		$('.preci-prob-span').text("0%");
 	} else {
-		$('.preci-prob-span').text((data['precipProbability'] * 100) + "%");
+		$('.preci-prob-span').text(Math.round(data['precipProbability'] * 100) + "%");
 	}
 	$('.temp-span').text(data['temp']);
     $('.feels-like-span').text(data['appTemp']);
 
-    var timestamp = Date.now();
-
+    var timestamp = Math.round(Date.now() / 1000);
+    
     var imgUrl = 'assets/images/weather';
     if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
 	imgUrl = imgUrl + '/day/';
