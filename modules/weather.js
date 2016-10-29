@@ -21,7 +21,9 @@ exports.getWeather = function(latlng, apiKey, si, res) {
     request(url, function (error, response, body) {
 	if (error) {
 	    console.log(error);
-	}
+	    res.contentType('application/json');
+	    res.send(JSON.stringify('{}'));
+	} else {
 	json = JSON.parse(body);
 
 	var current = json['currently'];
@@ -37,6 +39,7 @@ exports.getWeather = function(latlng, apiKey, si, res) {
 
 	res.contentType('application/json');
 	res.send(JSON.stringify(out));
-    
+
+	}
     });
 }
