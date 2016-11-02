@@ -26,11 +26,11 @@
  		updateNotif();
  	});
 
- 	startTime();
-
  	$('.weather-container').click(function() {
  		updateWeather();
  	});
+
+ 	startTime();
  });
 
  function startTime() {
@@ -92,7 +92,7 @@ function updateDate(today) {
 
 	if (date != currentDate) {
 		date = currentDate;
-	        $('#date').text(checkTime(date));
+		$('#date').text(checkTime(date));
 
 		var currentDay = today.getDay();
 		if (currentDay != day) {
@@ -195,7 +195,6 @@ function updateWeather() {
 }
 
 function parseWeather(data) {
-	// var parsed = JSON.parse(data);
 	$('.weather-summary-div').text(data['summary']);
 	$('.weather-icon').html('<i class="wi wi-forecast-io-' + data['icon'] + '"></i>');
 	if (data['precipProbability'] == 0) {
@@ -204,26 +203,23 @@ function parseWeather(data) {
 		$('.preci-prob-span').text(Math.round(data['precipProbability'] * 100) + "%");
 	}
 	$('.temp-span').text(data['temp']);
-    $('.feels-like-span').text(data['appTemp']);
+	$('.feels-like-span').text(data['appTemp']);
 
-    var timestamp = Math.round(Date.now() / 1000);
-    
-    var imgUrl = 'assets/images/weather';
-    if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
-	imgUrl = imgUrl + '/day/';
-    } else {
-	imgUrl = imgUrl + '/night/';
-    }
+	var timestamp = Math.round(Date.now() / 1000);
 
-    imgUrl = imgUrl + data['icon'] + '.jpg'; 
-    
-    if ($('.background-img').attr('src') != imgUrl) {
-	$('.background-img').fadeOut(250, function() {
-	    $('.background-img').attr('src', imgUrl);
-	    $('.background-img').fadeIn(250);
-	});
-    }
-    
+	var imgUrl = 'assets/images/weather';
+	if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
+		imgUrl = imgUrl + '/day/';
+	} else {
+		imgUrl = imgUrl + '/night/';
+	}
+
+	imgUrl = imgUrl + data['icon'] + '.jpg'; 
+
+	if ($('.background-img').attr('src') != imgUrl) {
+		$('.background-img').attr('src', imgUrl);
+	}
+
 }
 
 function updateNotif() {
