@@ -92,7 +92,7 @@ function updateDate(today) {
 
 	if (date != currentDate) {
 		date = currentDate;
-		$('#date').text(date);
+	        $('#date').text(checkTime(date));
 
 		var currentDay = today.getDay();
 		if (currentDay != day) {
