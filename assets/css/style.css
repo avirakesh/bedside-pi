@@ -7,143 +7,150 @@
  * ----------------------------------------------------------------------------
  */
 
-body {
-	padding: 0;
-	margin: 0;
-	font-family: 'Raleway', sans-serif;
-	background: #000;
-	overflow: hidden;
-}
+ body {
+ 	padding: 0;
+ 	margin: 0;
+ 	font-family: 'Raleway', sans-serif;
+ 	background: #000;
+ 	overflow: hidden;
+ }
 
-.background-img {
-	position: absolute;
-	display: inline-block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	left: 0;
-	top: 0;
-}
+ .background-img {
+ 	position: absolute;
+ 	display: inline-block;
+ 	opacity: 1;
+ 	width: 100%;
+ 	height: 100%;
+ 	object-fit: cover;
+ 	left: 0;
+ 	top: 0;
+ 	transition: opacity 1s linear;
+ 	-webkit-transition: opacity 1s linear;
+ }
 
-.img-filter-div {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.75);
-}
+ .hidden {
+ 	opacity: 0;
+ }
 
-.clock-container {
-	text-align: center;
-	display: inline-block;
-	width: 100%;
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	-moz-transform: translate(0, -50%);
-	-webkit-transform: translate(0, -50%);
-}
+ .img-filter-div {
+ 	position: absolute;
+ 	width: 100%;
+ 	height: 100%;
+ 	top: 0;
+ 	left: 0;
+ 	background: rgba(0, 0, 0, 0.75);
+ }
 
-.clock {
-	color: #FFF;
-	font-size: 150px;
-	display: inline-block;
-	vertical-align: center;
-	padding: 5px;
-	font-kerning: none;
-}
+ .clock-container {
+ 	text-align: center;
+ 	display: inline-block;
+ 	width: 100%;
+ 	position: absolute;
+ 	top: 50%;
+ 	transform: translate(0, -50%);
+ 	-moz-transform: translate(0, -50%);
+ 	-webkit-transform: translate(0, -50%);
+ }
 
-#seconds {
-	font-size: 60px;
-	vertical-align: bottom;
-}
+ .clock {
+ 	color: #FFF;
+ 	font-size: 150px;
+ 	display: inline-block;
+ 	vertical-align: center;
+ 	padding: 5px;
+ 	font-kerning: none;
+ }
 
-#am-pm {
-	font-size: 60px;
-	margin-left: 15px;
-	vertical-align: center;
-}
+ #seconds {
+ 	font-size: 60px;
+ 	vertical-align: bottom;
+ }
 
-.date-div {
-	color: #FFF;
-	font-size: 25px;
-	display: inline-block;
-	vertical-align: center;
-	padding: 5px;
-	font-variant: small-caps;
-}
+ #am-pm {
+ 	font-size: 60px;
+ 	margin-left: 15px;
+ 	vertical-align: center;
+ }
 
-.weather-container {
-	color: #FFF;
-	position: absolute;
-	display: inline-block;
-	top: 0;
-	width: 100%;
-	left: 0;
-	padding: 10px;
-	text-align: center;
-	font-size: 20px;
-}
+ .date-div {
+ 	color: #FFF;
+ 	font-size: 25px;
+ 	display: inline-block;
+ 	vertical-align: center;
+ 	padding: 5px;
+ 	font-variant: small-caps;
+ }
 
-.weather-container > div {
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 3px;
-	margin-right: 3px;
-}
+ .weather-container {
+ 	color: #FFF;
+ 	position: absolute;
+ 	display: inline-block;
+ 	top: 0;
+ 	width: 100%;
+ 	left: 0;
+ 	padding: 10px;
+ 	text-align: center;
+ 	font-size: 20px;
+ }
 
-.weather-icon {
-	font-size: 35px;
-}
+ .weather-container > div {
+ 	display: inline-block;
+ 	vertical-align: middle;
+ 	margin-left: 3px;
+ 	margin-right: 3px;
+ }
 
-.temp-div {
-	font-size: 30px;
-	margin-left: 10px;
-}
+ .weather-icon {
+ 	font-size: 35px;
+ }
 
-.feels-like-div {
-	color: rgba(255, 255, 255, 0.5);
-}
+ .temp-div {
+ 	font-size: 30px;
+ 	margin-left: 10px;
+ }
 
-.weather-summary-div {
-	font-size: 30px;
-}
+ .feels-like-div {
+ 	color: rgba(255, 255, 255, 0.5);
+ }
 
-.rain-chances-div {
-	color: rgba(255, 255, 255, 0.5);
-}
+ .weather-summary-div {
+ 	font-size: 30px;
+ }
 
-.powered-by-div {
-    float: right;
-}
+ .rain-chances-div {
+ 	color: rgba(255, 255, 255, 0.5);
+ }
 
-.powered-by-image {
-    max-height: 40px;
-}
+ .powered-by-div {
+ 	float: right;
+ }
 
-.notif-container {
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	display: inline-block;
-	text-align: center;
-	margin-bottom: 10px;
-}
+ .powered-by-image {
+ 	max-height: 40px;
+ }
 
-.notif-list {
-	list-style: none;
-	display: inline-block;
-	padding: 0;
-	margin: 0;
-}
+ .notif-container {
+ 	position: absolute;
+ 	width: 100%;
+ 	bottom: 0;
+ 	left: 0;
+ 	display: inline-block;
+ 	text-align: center;
+ 	margin-bottom: 10px;
+ }
 
-.notif-list-item {
-	display: inline-block;
-	padding: 4px;
-}
+ .notif-list {
+ 	list-style: none;
+ 	display: inline-block;
+ 	padding: 0;
+ 	margin: 0;
+ }
 
-.notif-image {
-	max-height: 35px;
-}
+ .notif-list-item {
+ 	display: inline-block;
+ 	padding: 4px;
+ }
+
+ .notif-image {
+ 	max-height: 35px;
+ }

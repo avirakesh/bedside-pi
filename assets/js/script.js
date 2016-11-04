@@ -217,7 +217,8 @@ function parseWeather(data) {
 	imgUrl = imgUrl + data['icon'] + '.jpg'; 
 
 	if ($('.background-img').attr('src') != imgUrl) {
-		$('.background-img').attr('src', imgUrl);
+		$('.hidden').attr('src', imgUrl);
+		$('.background-img').toggleClass('hidden');
 	}
 
 }
