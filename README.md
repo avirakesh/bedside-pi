@@ -1,6 +1,7 @@
 # BedSide Pi
 Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
 
+![alt-tag](screenshot/img.png)
 
 **UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with [Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/apache)**
 
