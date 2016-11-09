@@ -105,7 +105,7 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
     1. Dowload [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi) from Google Play Store 
     2. Open the app, and allow notification acccess
     3. Set up URL:
-      1. Fill in the URL of your Node.js web server (Ex. 192.168.2.16:8080).
+      1. Fill in the URL of your Node.js web server (Ex. http://192.168.2.16:8080).
     
         Use **ifconfig** to get the IP Address of your Pi.
         
