@@ -1,5 +1,5 @@
 # BedSide Pi
-Convert your Raspberry Pi (or any server) into a smart Bedside Clock.
+Convert your Raspberry Pi into a smart Bedside Clock.
 
 ![alt-tag](screenshot/img.png)
 
