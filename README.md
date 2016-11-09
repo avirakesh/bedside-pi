@@ -10,7 +10,8 @@ BedSide Pi provides information at a glance.
 - Time (Who would've thunk?)
 - Current Weather (Optional)
 - Current Notifications (Optional) **(Android Only)** (Requires [BedSide Pi Companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi))
-  - iOS version is in works!
+  - ~~iOS version is in works!~~ The powers at Apple decided that they didn't want anyone to take a peek at their walled garden. We couldn't find a way to mirror notifications from iOS devices. Thanks Apple!  
+    - If there's a solution I am missing, please let me know!
 
 ### Requirements
 BedSide Pi requires a bare minimum of
