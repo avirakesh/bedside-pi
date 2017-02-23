@@ -214,7 +214,7 @@ function parseWeather(data) {
 		imgUrl = imgUrl + '/night/';
 	}
 
-	imgUrl = imgUrl + data['icon'] + '.jpg'; 
+    imgUrl = imgUrl + data['icon'] + '.jpg'; 
 
 	if ($('.shown').attr('src') != imgUrl) {
 	    $('.hidden').attr('src', imgUrl);
@@ -236,10 +236,11 @@ function updateNotif() {
 
 function parseNotif (data) {
 	console.log("Data: " + data);
-	var html = '';	
+    var html = '';
+    var time = Math.round(Date.now() / 1000);
 	for (var i = 0; i < data.length; i++) {
 		// console.log(data[i]['package']);
-		html += '<li class="notif-list-item"><img class="notif-image" src="assets/images/' + data[i]['package'] + '.png"></li>'
+	    html += '<li class="notif-list-item"><img class="notif-image" src="assets/images/' + data[i]['package'] + '.png?' + time + '"></li>'
 	}
 
 	$('.notif-list').html(html);
