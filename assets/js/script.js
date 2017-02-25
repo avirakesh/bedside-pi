@@ -196,6 +196,7 @@ function updateWeather() {
 
 function parseWeather(data) {
 	if (data != '{}'){
+		// console.log(data);
 		$('.weather-summary-div').text(data['summary']);
 		$('.weather-icon').html('<i class="wi wi-forecast-io-' + data['icon'] + '"></i>');
 		if (data['precipProbability'] == 0) {
@@ -221,6 +222,20 @@ function parseWeather(data) {
 			$('.hidden').attr('src', imgUrl);
 			$('.background-img').toggleClass('hidden');
 			$('.background-img').toggleClass('shown');
+		}
+
+		if (data['alerts']) {
+			var html = '';
+			for (var i = 0; i < data['alerts'].length; i++) {
+				html += '<div>' + 
+						'<span class="alert-sign">!</span>' +
+						'<span class="alert-text">' + data['alerts'][i] + '</span>' +
+						'</div>';
+			}
+			$('.alerts-div').html(html);
+		} else {
+			$('.alerts-div').hide();
+			$('.alerts-div').html('');
 		}
 	}
 

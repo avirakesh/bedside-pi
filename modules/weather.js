@@ -36,6 +36,15 @@ exports.getWeather = function(latlng, apiKey, si, res) {
             out['appTemp'] = current['apparentTemperature'];
             out['sunrise'] = json['daily']['data'][0]['sunriseTime'];
             out['sunset'] = json['daily']['data'][0]['sunsetTime'];
+            if (json['alerts']) {
+                var alert = json['alerts'];
+                var alerts = new Array(json['alerts'].length);
+                for (var i = 0; i < alert.length; i++) {
+                    alerts[i] = alert[i]['title'];
+                }
+                out['alerts'] = alerts;
+                // console.log(out['alerts']);
+            }
 
             res.contentType('application/json');
             res.send(JSON.stringify(out));

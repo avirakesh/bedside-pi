@@ -121,6 +121,21 @@
  	color: rgba(255, 255, 255, 0.5);
  }
 
+ .alerts-div > div {
+    display: block;
+    padding-top: 3px;
+    padding-bottom: 3px;
+ }
+
+ .alert-sign {
+    font-family: monospace;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    padding: 2px 8px;
+    margin-right: 10px;
+ }
+
  .powered-by-div {
  	float: right;
  }
