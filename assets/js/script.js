@@ -1,66 +1,66 @@
 /*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * AvichalRakesh wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
- * ----------------------------------------------------------------------------
- */
+* ----------------------------------------------------------------------------
+* "THE BEER-WARE LICENSE" (Revision 42):
+* AvichalRakesh wrote this file.  As long as you retain this notice you
+* can do whatever you want with this stuff. If we meet some day, and you think
+* this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
+* ----------------------------------------------------------------------------
+*/
 
 
- var h = -1;
- var m = -1;
- var s = -1;
- var day = -1;
- var date = -1;
- var month = -1;
- var year = -1;
+var h = -1;
+var m = -1;
+var s = -1;
+var day = -1;
+var date = -1;
+var month = -1;
+var year = -1;
 
- var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
- var lastWeather = 0; 
+var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
+var lastWeather = 0; 
 
- $(function () {
- 	var socket = io();
+$(function () {
+	var socket = io();
 
- 	socket.on('update_notifs', function() {
- 		updateNotif();
- 	});
+	socket.on('update_notifs', function() {
+		updateNotif();
+	});
 
- 	$('.weather-container').click(function() {
- 		updateWeather();
- 	});
+	$('.weather-container').click(function() {
+		updateWeather();
+	});
 
- 	startTime();
- });
+	startTime();
+});
 
- function startTime() {
- 	var today = new Date();
+function startTime() {
+	var today = new Date();
 
- 	var hh = today.getHours();
- 	var mm = today.getMinutes();
- 	var ss = today.getSeconds();
+	var hh = today.getHours();
+	var mm = today.getMinutes();
+	var ss = today.getSeconds();
 
- 	if (h != hh) {
- 		h = hh;
- 		hh = checkAMPM();
- 		$('#hours').text(checkTime(hh));
+	if (h != hh) {
+		h = hh;
+		hh = checkAMPM();
+		$('#hours').text(checkTime(hh));
 
- 		updateDate(today);
- 	}
-
- 	if (m != mm) {
- 		m = mm;
- 		$('#minutes').text(checkTime(m));
-
-		// To remove weather, comment out from here... 
-		if (lastWeather == 0) {
-			updateWeather();
-		}
-
-		lastWeather = (lastWeather + 1) % weatherInterval;
-		// ... to here 
+		updateDate(today);
 	}
-	
+
+	if (m != mm) {
+		m = mm;
+		$('#minutes').text(checkTime(m));
+
+	// To remove weather, comment out from here... 
+	if (lastWeather == 0) {
+		updateWeather();
+	}
+
+	lastWeather = (lastWeather + 1) % weatherInterval;
+	// ... to here 
+	}
+
 	if (s != ss) {
 		s = ss;
 		$('#seconds').text(checkTime(s));
@@ -117,72 +117,72 @@ function updateDate(today) {
 function setDay() {
 	switch (day) {
 		case 0:
-		$('#day').text("Sun,");
-		break;
+			$('#day').text("Sun,");
+			break;
 		case 1:
-		$('#day').text("Mon,");
-		break;
+			$('#day').text("Mon,");
+			break;
 		case 2:
-		$('#day').text("Tue,");
-		break;
+			$('#day').text("Tue,");
+			break;
 		case 3:
-		$('#day').text("Wed,");
-		break;
+			$('#day').text("Wed,");
+			break;
 		case 4:
-		$('#day').text("Thu,");
-		break;
+			$('#day').text("Thu,");
+			break;
 		case 5:
-		$('#day').text("Fri,");
-		break;
+			$('#day').text("Fri,");
+			break;
 		case 6:
-		$('#day').text("Sat,");
-		break;
+			$('#day').text("Sat,");
+			break;
 	}
 }
 
 function setMonth() {
 	switch (month) {
 		case 0:
-		$('#month').text("Jan");
-		break;
+			$('#month').text("Jan");
+			break;
 		case 1:
-		$('#month').text("Feb");
-		break;
+			$('#month').text("Feb");
+			break;
 		case 2:
-		$('#month').text("Mar");
-		break;
+			$('#month').text("Mar");
+			break;
 		case 3:
-		$('#month').text("Apr");
-		break;
+			$('#month').text("Apr");
+			break;
 		case 4:
-		$('#month').text("May");
-		break;
+			$('#month').text("May");
+			break;
 		case 5:
-		$('#month').text("Jun");
-		break;
+			$('#month').text("Jun");
+			break;
 		case 6:
-		$('#month').text("Jul");
-		break;
+			$('#month').text("Jul");
+			break;
 		case 7:
-		$('#month').text("Aug");
-		break;
+			$('#month').text("Aug");
+			break;
 		case 8:
-		$('#month').text("Sep");
-		break;
+			$('#month').text("Sep");
+			break;
 		case 9:
-		$('#month').text("Oct");
-		break;
+			$('#month').text("Oct");
+			break;
 		case 10:
-		$('#month').text("Nov");
-		break;
+			$('#month').text("Nov");
+			break;
 		case 11:
-		$('#month').text("Dec");
-		break;
+			$('#month').text("Dec");
+			break;
 	}
 }
 
 function updateWeather() {
-	
+
 	// console.log(url);
 
 	$.ajax({
@@ -195,31 +195,33 @@ function updateWeather() {
 }
 
 function parseWeather(data) {
-	$('.weather-summary-div').text(data['summary']);
-	$('.weather-icon').html('<i class="wi wi-forecast-io-' + data['icon'] + '"></i>');
-	if (data['precipProbability'] == 0) {
-		$('.preci-prob-span').text("0%");
-	} else {
-		$('.preci-prob-span').text(Math.round(data['precipProbability'] * 100) + "%");
-	}
-	$('.temp-span').text(data['temp']);
-	$('.feels-like-span').text(data['appTemp']);
+	if (data != '{}'){
+		$('.weather-summary-div').text(data['summary']);
+		$('.weather-icon').html('<i class="wi wi-forecast-io-' + data['icon'] + '"></i>');
+		if (data['precipProbability'] == 0) {
+			$('.preci-prob-span').text("0%");
+		} else {
+			$('.preci-prob-span').text(Math.round(data['precipProbability'] * 100) + "%");
+		}
+		$('.temp-span').text(data['temp']);
+		$('.feels-like-span').text(data['appTemp']);
 
-	var timestamp = Math.round(Date.now() / 1000);
+		var timestamp = Math.round(Date.now() / 1000);
 
-	var imgUrl = 'assets/images/weather';
-	if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
-		imgUrl = imgUrl + '/day/';
-	} else {
-		imgUrl = imgUrl + '/night/';
-	}
+		var imgUrl = 'assets/images/weather';
+		if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
+			imgUrl = imgUrl + '/day/';
+		} else {
+			imgUrl = imgUrl + '/night/';
+		}
 
-    imgUrl = imgUrl + data['icon'] + '.jpg'; 
+		imgUrl = imgUrl + data['icon'] + '.jpg'; 
 
-	if ($('.shown').attr('src') != imgUrl) {
-	    $('.hidden').attr('src', imgUrl);
-	    $('.background-img').toggleClass('hidden');
-	    $('.background-img').toggleClass('shown');
+		if ($('.shown').attr('src') != imgUrl) {
+			$('.hidden').attr('src', imgUrl);
+			$('.background-img').toggleClass('hidden');
+			$('.background-img').toggleClass('shown');
+		}
 	}
 
 }
@@ -235,12 +237,12 @@ function updateNotif() {
 }
 
 function parseNotif (data) {
-	console.log("Data: " + data);
-    var html = '';
-    var time = Math.round(Date.now() / 1000);
+	//console.log("Data: " + data);
+	var html = '';
+	var time = Math.round(Date.now() / 1000);
 	for (var i = 0; i < data.length; i++) {
 		// console.log(data[i]['package']);
-	    html += '<li class="notif-list-item"><img class="notif-image" src="assets/images/' + data[i]['package'] + '.png?' + time + '"></li>'
+		html += '<li class="notif-list-item"><img class="notif-image" src="assets/images/' + data[i]['package'] + '.png?' + time + '"></li>'
 	}
 
 	$('.notif-list').html(html);
