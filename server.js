@@ -7,9 +7,9 @@
  * ----------------------------------------------------------------------------
  */
 
- var express = require('express');
+var express = require('express');
 var port = 8080; // default = 8080 
-				 // change to 80 if you don't want to type ':8080' at the end.
+                 // change to 80 if you don't want to type ':8080' at the end.
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -60,6 +60,7 @@ app.get('/check-connection.php', function(req, res) {
 });
 
 app.use('/assets', express.static('assets'));
+app.use('/', express.static('assets'));
 
 io.on('connection', function(socket) {
 	console.log('Connection Established');
