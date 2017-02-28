@@ -233,6 +233,7 @@ function parseWeather(data) {
 						'</div>';
 			}
 			$('.alerts-div').html(html);
+            $('.alerts-div').show();
 		} else {
 			$('.alerts-div').hide();
 			$('.alerts-div').html('');
