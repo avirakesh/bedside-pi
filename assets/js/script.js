@@ -20,6 +20,9 @@ var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
 var lastWeather = 0;
 var clock24hrs = false; /* Change to true for 24 hr clock */
 
+var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 $(function () {
 	var socket = io();
 
@@ -123,70 +126,11 @@ function updateDate(today) {
 }
 
 function setDay() {
-	switch (day) {
-		case 0:
-			$('#day').text("Sun,");
-			break;
-		case 1:
-			$('#day').text("Mon,");
-			break;
-		case 2:
-			$('#day').text("Tue,");
-			break;
-		case 3:
-			$('#day').text("Wed,");
-			break;
-		case 4:
-			$('#day').text("Thu,");
-			break;
-		case 5:
-			$('#day').text("Fri,");
-			break;
-		case 6:
-			$('#day').text("Sat,");
-			break;
-	}
+	$('#day').text(days[day] + ",")
 }
 
 function setMonth() {
-	switch (month) {
-		case 0:
-			$('#month').text("Jan");
-			break;
-		case 1:
-			$('#month').text("Feb");
-			break;
-		case 2:
-			$('#month').text("Mar");
-			break;
-		case 3:
-			$('#month').text("Apr");
-			break;
-		case 4:
-			$('#month').text("May");
-			break;
-		case 5:
-			$('#month').text("Jun");
-			break;
-		case 6:
-			$('#month').text("Jul");
-			break;
-		case 7:
-			$('#month').text("Aug");
-			break;
-		case 8:
-			$('#month').text("Sep");
-			break;
-		case 9:
-			$('#month').text("Oct");
-			break;
-		case 10:
-			$('#month').text("Nov");
-			break;
-		case 11:
-			$('#month').text("Dec");
-			break;
-	}
+	$('#month').text(months[month]);
 }
 
 function updateWeather() {
