@@ -31,24 +31,24 @@ BedSide Pi requires a bare minimum of
   
 1. Installing Node.js
   
-If you haven't done so in a while, run the following commands:
+    If you haven't done so in a while, run the following commands:
      
-      sudo apt-get update
-      sudo apt-get upgrade
+        sudo apt-get update
+        sudo apt-get upgrade
         
-Now your Pi is ready to go. Use the following commands to install Node and npm:
+    Now your Pi is ready to go. Use the following commands to install Node and npm:
     
-  Add the package repository:
+    Add the package repository:
         
-      curl -sLS https://apt.adafruit.com/add | sudo bash
+        curl -sLS https://apt.adafruit.com/add | sudo bash
         
- Install Node:
+    Install Node:
      
-      sudo apt-get install node
+        sudo apt-get install node
         
- Test Node:
+    Test Node:
         
-      node -v
+        node -v
 
 
 **NOTE: The repository is managed by adafruit. To know more about how to setup Node.js on Pi, go to the [official website](https://learn.adafruit.com/node-embedded-development/installing-node-dot-js)**
@@ -59,29 +59,29 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
   
 1. Download this project:
   
-  Either clone this project or download the entire project as a zip, your wish!
+    Either clone this project or download the entire project as a zip, your wish!
     
 2. Move the files to your Pi:
   
-  Move the files to the directory where you want the application to run. Make sure you have write permission in that directory. (For ex. ~/BedSidePi/)
+    Move the files to the directory where you want the application to run. Make sure you have write permission in that directory. (For ex. ~/BedSidePi/)
     
 3. Install dependencies:
   
-  Open terminal and set your current working directory as the directory chosen above.
+    Open terminal and set your current working directory as the directory chosen above.
     
-  For example
+    For example
         
-      cd ~/BedSidePi
+        cd ~/BedSidePi
         
-  Once the current directory has been set, run the following command:
+    Once the current directory has been set, run the following command:
     
-      npm install
+        npm install
         
-  You should see the dependencies install to the working directory.
+    You should see the dependencies install to the working directory.
     
 4. (Optional) Change to 24-hr Clock:
   
-  Go to [assets/js/script.js](assets/js/script.js) on your server, and change **clock24hrs** to **true**.
+    Go to [assets/js/script.js](assets/js/script.js) on your server, and change **clock24hrs** to **true**.
       
 
 
