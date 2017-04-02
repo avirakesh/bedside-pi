@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "description": "A Smart Bedside Clock",
   "main": "server.js",
-  "repository" :
-  { 
-    "type" : "git",
-    "url" : "https://github.com/avirakesh/bedside-pi"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avirakesh/bedside-pi"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,9 +13,9 @@
   "author": "Avichal Rakesh",
   "license": "Beerware",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "request": "^2.75.0",
-    "socket.io": "^1.5.0"
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "request": "^2.79.0",
+    "socket.io": "^1.7.3"
   }
 }
