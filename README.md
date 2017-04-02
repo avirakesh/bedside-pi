@@ -79,7 +79,7 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
         
     You should see the dependencies install to the working directory.
     
-4. (Optional) Change to 24-hr Clock:
+4. **(Optional)** Change to 24-hr Clock:
   
     Go to [assets/js/script.js](assets/js/script.js) on your server, and change **clock24hrs** to **true**.
       
