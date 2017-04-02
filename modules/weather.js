@@ -10,11 +10,11 @@
 var exports = module.exports = {};
 var request = require('request');
 
-exports.getWeather = function(latlng, apiKey, si, res) {
-    var url = "https://api.forecast.io/forecast/" + apiKey + "/" + latlng;
+exports.getWeather = function(latlng, apiKey, si, lang, res) {
+    var url = "https://api.forecast.io/forecast/" + apiKey + "/" + latlng + "?lang=" + lang;
 
     if (si) {
-        url = url + "?units=si";
+        url = url + "&units=si";
     }
 
     var json;

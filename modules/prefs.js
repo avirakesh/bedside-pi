@@ -8,13 +8,54 @@
  */
 
 var latlng = '65.077739,-21.418135'; /* latitude, longitude */
-var apiKey = 'Your API Key here' ; 
 
-/* To obtain an API key, sign up at 
+/* To obtain an API key, sign up at
 ------------------------
 https://darksky.net/dev/
------------------------- 
+------------------------
 */
+var apiKey = 'Your API Key here';
+
+/*
+ * Language Codes:
+ *
+ * ar: Arabic
+ * az: Azerbaijani
+ * be: Belarusian
+ * bg: Bulgarian
+ * bs: Bosnian
+ * ca: Catalan
+ * cs: Czech
+ * de: German
+ * el: Greek
+ * en: English (default)
+ * es: Spanish
+ * et: Estonian
+ * fr: French
+ * hr: Croatian
+ * hu: Hungarian
+ * id: Indonesian
+ * it: Italian
+ * is: Icelandic
+ * kw: Cornish
+ * nb: Norwegian Bokmål
+ * nl: Dutch
+ * pl: Polish
+ * pt: Portuguese
+ * ru: Russian
+ * sk: Slovak
+ * sl: Slovenian
+ * sr: Serbian
+ * sv: Swedish
+ * tet: Tetum
+ * tr: Turkish
+ * uk: Ukrainian
+ * x-pig-latin: Igpay Atinlay
+ * zh: simplified Chinese
+ * zh-tw: traditional Chinese
+ */
+var lang = 'en';  /*Use codes from above, taken from darksky API.*/
+
 var siUnits = true; /* change to false for imperial units */
 
 
@@ -22,4 +63,4 @@ var siUnits = true; /* change to false for imperial units */
 module.exports.latlng = latlng;
 module.exports.apiKey = apiKey;
 module.exports.siUnits = siUnits;
-
+module.exports.lang = lang;

@@ -8,7 +8,7 @@
  */
 
 var express = require('express');
-var port = 8080; // default = 8080 
+var port = 8080; // default = 8080
                  // change to 80 if you don't want to type ':8080' at the end.
 var app = express();
 var http = require('http').Server(app);
@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/get-weather', function(req, res) {
-    weather.getWeather(prefs.latlng, prefs.apiKey, prefs.siUnits, res);
+    weather.getWeather(prefs.latlng, prefs.apiKey, prefs.siUnits, prefs.lang, res);
 });
 
 /*
