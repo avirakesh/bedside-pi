@@ -17,7 +17,8 @@ var month = -1;
 var year = -1;
 
 var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
-var lastWeather = 0; 
+var lastWeather = 0;
+var clock24hrs = false; /* Change to true for 24 hr clock */
 
 $(function () {
 	var socket = io();
@@ -30,6 +31,9 @@ $(function () {
 		updateWeather();
 	});
 
+	if (clock24hrs) {
+		$('#am-pm').hide();
+	}
 	startTime();
 });
 
@@ -42,8 +46,12 @@ function startTime() {
 
 	if (h != hh) {
 		h = hh;
-		hh = checkAMPM();
-		$('#hours').text(checkTime(hh));
+		if (!clock24hrs) {
+			hh = checkAMPM();
+			$('#hours').text(checkTime(hh));
+		} else {
+			$('#hours').text(checkTime(hh));
+		}
 
 		updateDate(today);
 	}
@@ -52,13 +60,13 @@ function startTime() {
 		m = mm;
 		$('#minutes').text(checkTime(m));
 
-	// To remove weather, comment out from here... 
+	// To remove weather, comment out from here...
 	if (lastWeather == 0) {
 		updateWeather();
 	}
 
 	lastWeather = (lastWeather + 1) % weatherInterval;
-	// ... to here 
+	// ... to here
 	}
 
 	if (s != ss) {
@@ -191,7 +199,7 @@ function updateWeather() {
 			// console.log(data);
 			parseWeather(data);
 		}
-	}); 
+	});
 }
 
 function parseWeather(data) {
@@ -216,7 +224,7 @@ function parseWeather(data) {
 			imgUrl = imgUrl + '/night/';
 		}
 
-		imgUrl = imgUrl + data['icon'] + '.jpg'; 
+		imgUrl = imgUrl + data['icon'] + '.jpg';
 
 		if ($('.shown').attr('src') != imgUrl) {
 			$('.hidden').attr('src', imgUrl);
@@ -227,13 +235,13 @@ function parseWeather(data) {
 		if (data['alerts']) {
 			var html = '';
 			for (var i = 0; i < data['alerts'].length; i++) {
-				html += '<div>' + 
+				html += '<div>' +
 						'<span class="alert-sign">!</span>' +
 						'<span class="alert-text">' + data['alerts'][i] + '</span>' +
 						'</div>';
 			}
-			$('.alerts-div').html(html);
-            $('.alerts-div').show();
+		    $('.alerts-div').html(html);
+		    $('.alerts-div').show();
 		} else {
 			$('.alerts-div').hide();
 			$('.alerts-div').html('');
