@@ -19,7 +19,7 @@ BedSide Pi requires a bare minimum of
   - Raspberry Pi should be connected to a network
 - A screen to display the information
 
-####Optional Items
+#### Optional Items
 - API Key from [DarkSky](https://darksky.net/dev/). This is used to access weather information.
 - Android Phone with [BedSide Pi companion app](https://play.google.com/store/apps/details?id=com.highonh2o.tabletoppi)
 
@@ -27,76 +27,82 @@ BedSide Pi requires a bare minimum of
 ## Setting Things Up 
 **Note: This process assumes you have a Raspberry Pi 3. If you have some other model, you might have to change a few things.**
 
-####1. Setting up Node.js on Pi
+#### 1. Setting up Node.js on Pi
   
-  1. Installing Node.js
+1. Installing Node.js
   
-    If you haven't done so in a while, run the following commands:
+If you haven't done so in a while, run the following commands:
      
-        sudo apt-get update
-        sudo apt-get upgrade
+      sudo apt-get update
+      sudo apt-get upgrade
         
-    Now your Pi is ready to go. Use the following commands to install Node and npm:
+Now your Pi is ready to go. Use the following commands to install Node and npm:
     
-      Add the package repository:
+  Add the package repository:
         
-        curl -sLS https://apt.adafruit.com/add | sudo bash
+      curl -sLS https://apt.adafruit.com/add | sudo bash
         
-     Install Node:
+ Install Node:
      
-        sudo apt-get install node
+      sudo apt-get install node
         
-     Test Node:
+ Test Node:
         
-        node -v
+      node -v
 
 
 **NOTE: The repository is managed by adafruit. To know more about how to setup Node.js on Pi, go to the [official website](https://learn.adafruit.com/node-embedded-development/installing-node-dot-js)**
 
 Now that Node.js is successfully setup on Pi, we can continue to the next step.
 
-####2. Setting up BedSide Pi
+#### 2. Setting up BedSide Pi
   
-  1. Download this project:
-
-    Either clone this project or download the entire project as a zip, your wish!
-    
-  2. Move the files to your Pi:
+1. Download this project:
   
-    Move the files to the directory where you want the application to run. Make sure you have write permission in that directory. (For ex. ~/BedSidePi/)
+  Either clone this project or download the entire project as a zip, your wish!
     
-  3. Install dependencies:
+2. Move the files to your Pi:
+  
+  Move the files to the directory where you want the application to run. Make sure you have write permission in that directory. (For ex. ~/BedSidePi/)
     
-    Open terminal and set your current working directory as the directory chosen above.
+3. Install dependencies:
+  
+  Open terminal and set your current working directory as the directory chosen above.
     
-    For example
+  For example
         
-        cd ~/BedSidePi
+      cd ~/BedSidePi
         
-    Once the current directory has been set, run the following command:
+  Once the current directory has been set, run the following command:
     
-        npm install
+      npm install
         
-    You should see the dependencies install to the working directory.
+  You should see the dependencies install to the working directory.
+    
+4. (Optional) Change to 24-hr Clock:
+  
+  Go to [assets/js/script.js](assets/js/script.js) on your server, and change **clock24hrs** to **true**.
+      
 
 
-####3. Setting up weather (or removing it)
+#### 3. Setting up weather (or removing it)
 
   * Setting up weather:
     1. Grab the API key from [darksky.net/dev](https://darksky.net/dev/)
     2. Open [modules/prefs.js](modules/prefs.js) on your Pi
     3. Copy the API key from [darksky.net/dev](https://darksky.net/dev/) to **apiKey** (Note: Enclose in single quotes)
     4. Set **latlng** to your latitude and longitude
-    5. (Optional) Open [assets/js/script.js](assets/js/script.js) on your web server and set the refresh interval
+    5. (Optional) Set **lang** to your preferred language
+    5. (Optional) Open [assets/js/script.js](assets/js/script.js) on your web server and set **weatherInterval**
     
   * Removing weather:
     1. Open [views / index.html](views/index.html) on your web server
     2. Comment out the div which contains weather information
     3. Open [assets / js / script.js](assets/js/script.js) on your web server
-    4. Follow the comments at line 55
+    4. Follow the comments at line 63
     
 
-####4. Setting up Notification Mirroring (or removing it)
+#### 4. Setting up Notification Mirroring (or removing it)
 
   * Setting up Notification Mirroring:
 
@@ -131,7 +137,7 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
   
     * Delete the companion app making sure there are no notifications already mirrored.
     
-####5. Running bedside-pi:
+#### 5. Running bedside-pi:
   
   Run the following command from the directory where project lives:
   
@@ -139,7 +145,7 @@ Now that Node.js is successfully setup on Pi, we can continue to the next step.
       
   Leave the terminal window running and use a browser to access the clock.
 
-####And that is it, enjoy your BedSide Pi!!
+#### And that is it, enjoy your BedSide Pi!!
 
 ## License
 
