@@ -72,6 +72,6 @@ io.on('connection', function(socket) {
 	});
 });
 
-http.listen(8080, function() {
-    console.log ('Server running at port 8080');
+http.listen(port, function() {
+    console.log ('Server running at port ' + port);
 });
