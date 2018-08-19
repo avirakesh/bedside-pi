@@ -20,7 +20,7 @@ exports.getWeather = function(latlng, apiKey, si, lang, res) {
     var json;
     request(url, function (error, response, body) {
         if (error || response.statusCode != 200) {
-            console.log('Error: ' + error);
+            console.log('Weather Error: ' + error);
             res.contentType('application/json');
             res.send(JSON.stringify('{}'));
         } else {
