@@ -37,13 +37,16 @@ exports.getWeather = function(latlng, apiKey, si, lang, res) {
             out['sunrise'] = json['daily']['data'][0]['sunriseTime'];
             out['sunset'] = json['daily']['data'][0]['sunsetTime'];
             if (json['alerts']) {
-                var alert = json['alerts'];
-                var alerts = new Array(json['alerts'].length);
-                for (var i = 0; i < alert.length; i++) {
-                    alerts[i] = alert[i]['title'];
+                var raw_alerts_list = json['alerts'];
+                // console.log(raw_alerts_list);
+                var alerts = new Array();
+                for (var i = 0; i < raw_alerts_list.length; i++) {
+                    var alert_title = raw_alerts_list[i]['title'];
+                    if (!alerts.includes(alert_title)) {
+                        alerts.push(alert_title);
+                    }
                 }
                 out['alerts'] = alerts;
-                // console.log(out['alerts']);
             }
 
             res.contentType('application/json');
