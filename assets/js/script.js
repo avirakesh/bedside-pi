@@ -134,13 +134,9 @@ function setMonth() {
 }
 
 function updateWeather() {
-
-	// console.log(url);
-
 	$.ajax({
 		url: 'http://' + window.location.host + '/get-weather',
 		success: function (data) {
-			// console.log(data);
 			parseWeather(data);
 		}
 	});
@@ -149,26 +145,23 @@ function updateWeather() {
 function parseWeather(data) {
 	if (data != '{}'){
 		// console.log(data);
-		$('.weather-summary-div').text(data['summary']);
-		$('.weather-icon').html('<i class="wi wi-forecast-io-' + data['icon'] + '"></i>');
-		if (data['precipProbability'] == 0) {
-			$('.preci-prob-span').text("0%");
+		$('.weather-summary-div').text(getWeatherSummary(data['weather']));
+
+		var timestamp = Math.round(Date.now() / 1000);
+		var isDay = timestamp > data['sunrise'] && timestamp < data['sunset'];
+
+		$('.weather-icon').html(generateIconSpans(data["weather_id"], isDay));
+		if (data['precip']) {
+			$('.preci-span').text(data['precip'] + ' mm');
+			$('.preci-div').show()
 		} else {
-			$('.preci-prob-span').text(Math.round(data['precipProbability'] * 100) + "%");
+			$('.preci-div').hide()
 		}
+
 		$('.temp-span').text(data['temp']);
 		$('.feels-like-span').text(data['appTemp']);
 
-		var timestamp = Math.round(Date.now() / 1000);
-
-		var imgUrl = 'assets/images/weather';
-		if (timestamp > data['sunrise'] && timestamp < data['sunset']) {
-			imgUrl = imgUrl + '/day/';
-		} else {
-			imgUrl = imgUrl + '/night/';
-		}
-
-		imgUrl = imgUrl + data['icon'] + '.jpg';
+		imgUrl = mapWeatherIdToBackgroundImage(data["weather_id"], isDay);
 
 		if ($('.shown').attr('src') != imgUrl) {
 			$('.hidden').attr('src', imgUrl);
@@ -178,10 +171,10 @@ function parseWeather(data) {
 
 		if (data['alerts']) {
 			var html = '';
-			for (var i = 0; i < data['alerts'].length; i++) {
+			for (var alert of data['alerts']) {
 				html += '<div>' +
 						'<span class="alert-sign">!</span>' +
-						'<span class="alert-text">' + data['alerts'][i] + '</span>' +
+						'<span class="alert-text">' + alert + '</span>' +
 						'</div>';
 			}
 		    $('.alerts-div').html(html);
@@ -192,6 +185,71 @@ function parseWeather(data) {
 		}
 	}
 
+}
+
+function generateIconSpans(weatherIds, isDay) {
+	var html = "";
+	for (var weatherId of weatherIds) {
+		html += '<i class="wi wi-owm-' + (isDay ? 'day-' : 'night-') + weatherId + '"></i>';
+	}
+	return html;
+}
+
+function mapWeatherIdToBackgroundImage(weatherIds, isDay) {
+	// Referenced from https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+	var weatherId = weatherIds[0]; // Just use the first weather for background
+
+	var imgUrl = 'assets/images/weather/' + (isDay ? 'day/' : 'night/');
+
+	if (weatherId == 800) {
+		imgUrl += 'clear.jpg';
+	} else if (weatherId == 804) {
+		imgUrl += 'cloudy.jpg'
+	} else if (Math.floor(weatherId / 100) == 8) {
+		// All 8xx codes other than 800 and 804
+		imgUrl += 'partly-cloudy.jpg';
+	} else if (Math.floor(weatherId / 100) == 2) {
+		// All 2xx codes
+		imgUrl += 'thunderstorm.jpg'
+	} else if (Math.floor(weatherId / 100) == 3 || Math.floor(weatherId / 100) == 5) {
+		// All 3xx and 5xx codes
+		imgUrl += 'rain.jpg'
+	} else if (Math.floor(weatherId / 100) == 6) {
+		if (weatherId == 611 || weatherId == 612 || weatherId == 613) {
+			imgUrl += 'sleet.jpg'
+		} else {
+			imgUrl += 'snow.jpg'
+		}
+	} else if (weatherId == 781) {
+		imgUrl += 'tornado.jpg'
+	} else if (Math.floor(weatherId / 100) == 7) {
+		// All 7xx codes other than 781
+		imgUrl += 'fog.jpg';
+	} else {
+		imgUrl += "default.jpg"
+	}
+
+	return imgUrl;
+}
+
+function getWeatherSummary(weathers) {
+	if (weathers.length == 1) {
+		return weathers[0];
+	}
+
+	var text = '';
+	for (var weatherIdx in weathers) {
+		if (weatherIdx != 0 && weatherIdx != weathers.length - 1) {
+			// not first or last element
+			text += ", ";
+		} else if (weatherIdx == weathers.length - 1) {
+			// last element
+			text += " & ";
+		}
+		text += weathers[weatherIdx];
+	}
+
+	return text;
 }
 
 function updateNotif() {

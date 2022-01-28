@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/get-weather', function(req, res) {
-    weather.getWeather(prefs.latlng, prefs.apiKey, prefs.siUnits, prefs.lang, res);
+    weather.getWeather(prefs.location, prefs.apiKey, prefs.siUnits, prefs.lang, res);
 });
 
 /*
