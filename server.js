@@ -12,7 +12,6 @@ var port = 8080; // default = 8080
                  // change to 80 if you don't want to type ':8080' at the end.
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
 var bodyParser = require('body-parser');
 
@@ -36,41 +35,12 @@ app.get('/get-weather', function(req, res) {
     weather.getWeather(prefs.location, prefs.apiKey, prefs.siUnits, prefs.lang, res);
 });
 
-/*
-For Future!
-
-app.get('/clear-notif', function (req, res){
-    clearNotif.clearNotifications(res, io);
-});*/
-
-app.get('/reset-notifications.php', function (req, res) {
-	clearNotif.clearNotifications(res, io);
-});
-
-app.post('/set-notifications.php', function (req, res) {
-    setNotifs.setNotifications(req.body, res, io);
-});
-
-app.get('/get-notifications.php', function(req, res) {
-	getNotifs.getNotifications(res, io);
-});
-
 app.get('/check-connection.php', function(req, res) {
 	res.send('"Success"');
 });
 
 app.use('/assets', express.static('assets'));
 app.use('/', express.static('assets'));
-
-io.on('connection', function(socket) {
-	console.log('Connection Established');
-
-	socket.emit('update_notifs');
-
-	socket.on('disconnect', function() {
-		console.log('Connection Removed')
-	});
-});
 
 http.listen(port, function() {
     console.log ('Server running at port ' + port);
