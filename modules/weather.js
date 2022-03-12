@@ -22,7 +22,7 @@ exports.getWeather = function(location, apiKey, si, lang, res) {
     request(url, function(error, response, body) {
         if (error || response.statusCode != 200) {
             console.log("Weather Error: " + error);
-            console.log("Staus Code: " + response.statusCode);
+            console.log("Response " + response);
             res.send(JSON.stringify("{}"));
             return;
         }
