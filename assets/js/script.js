@@ -132,6 +132,10 @@ function updateWeather() {
 		url: 'http://' + window.location.host + '/get-weather',
 		success: function (data) {
 			parseWeather(data);
+			$('.weather-container').css('visibility', 'visible');
+		},
+		error: function () {
+			$('.weather-container').css('visibility', 'hidden');
 		}
 	});
 }
