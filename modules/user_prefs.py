@@ -29,10 +29,7 @@ class UserPrefs:
         if "apiKey" not in self._prefs["weatherPrefs"]:
             raise KeyError(f"No 'apiKey' found in 'weatherPrefs' in {self.yaml_path}")
 
-        if "language" not in self._prefs["weatherPrefs"]:
-            raise KeyError(f"No 'language' found in 'weatherPrefs' in {self.yaml_path}")
-
-        if "useSIUnits" not in self._prefs["weatherPrefs"]:
+        if "units" not in self._prefs["weatherPrefs"]:
             raise KeyError(
                 f"No 'useSIUnits' found in 'weatherPrefs' in '{self.yaml_path}'"
             )

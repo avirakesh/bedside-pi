@@ -143,14 +143,17 @@ function updateWeather() {
 function parseWeather(data) {
 	if (data != '{}'){
 		// console.log(data);
-		$('.weather-summary-div').text(getWeatherSummary(data['weather']));
+		$('.weather-summary-div').text(data['summary']);
 
 		var timestamp = Math.round(Date.now() / 1000);
 		var isDay = timestamp > data['sunrise'] && timestamp < data['sunset'];
 
-		$('.weather-icon').html(generateIconSpans(data["weather_id"], isDay));
-		if (data['precip']) {
-			$('.preci-span').text(data['precip'] + ' mm');
+		$('.weather-icon').html(generateIconSpan(data["icon"]));
+
+		if (data['precipitation']) {
+			var probability = data['precipitation']['probability']
+			var amount = data['precipitation']['amount'];
+			$('.preci-span').text(probability + '% ');
 			$('.preci-div').show()
 		} else {
 			$('.preci-div').hide()
@@ -159,7 +162,7 @@ function parseWeather(data) {
 		$('.temp-span').text(data['temp']);
 		$('.feels-like-span').text(data['appTemp']);
 
-		imgUrl = mapWeatherIdToBackgroundImage(data["weather_id"], isDay);
+		imgUrl = mapWeatherIdToBackgroundImage(data["icon"], isDay);
 
 		if ($('.shown').attr('src') != imgUrl) {
 			$('.hidden').attr('src', imgUrl);
@@ -185,69 +188,14 @@ function parseWeather(data) {
 
 }
 
-function generateIconSpans(weatherIds, isDay) {
-	var html = "";
-	for (var weatherId of weatherIds) {
-		html += '<i class="wi wi-owm-' + (isDay ? 'day-' : 'night-') + weatherId + '"></i>';
-	}
-	return html;
+function generateIconSpan(icon, isDay) {
+	return '<i class="wi wi-darksky-' + icon + '"></i>';
 }
 
-function mapWeatherIdToBackgroundImage(weatherIds, isDay) {
-	// Referenced from https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
-	var weatherId = weatherIds[0]; // Just use the first weather for background
-
+function mapWeatherIdToBackgroundImage(icon, isDay) {
 	var imgUrl = 'assets/images/weather/' + (isDay ? 'day/' : 'night/');
-
-	if (weatherId == 800) {
-		imgUrl += 'clear.jpg';
-	} else if (weatherId == 804) {
-		imgUrl += 'cloudy.jpg'
-	} else if (Math.floor(weatherId / 100) == 8) {
-		// All 8xx codes other than 800 and 804
-		imgUrl += 'partly-cloudy.jpg';
-	} else if (Math.floor(weatherId / 100) == 2) {
-		// All 2xx codes
-		imgUrl += 'thunderstorm.jpg'
-	} else if (Math.floor(weatherId / 100) == 3 || Math.floor(weatherId / 100) == 5) {
-		// All 3xx and 5xx codes
-		imgUrl += 'rain.jpg'
-	} else if (Math.floor(weatherId / 100) == 6) {
-		if (weatherId == 611 || weatherId == 612 || weatherId == 613) {
-			imgUrl += 'sleet.jpg'
-		} else {
-			imgUrl += 'snow.jpg'
-		}
-	} else if (weatherId == 781) {
-		imgUrl += 'tornado.jpg'
-	} else if (Math.floor(weatherId / 100) == 7) {
-		// All 7xx codes other than 781
-		imgUrl += 'fog.jpg';
-	} else {
-		imgUrl += "default.jpg"
-	}
-
-	return imgUrl;
-}
-
-function getWeatherSummary(weathers) {
-	if (weathers.length == 1) {
-		return weathers[0];
-	}
-
-	var text = '';
-	for (var weatherIdx in weathers) {
-		if (weatherIdx != 0 && weatherIdx != weathers.length - 1) {
-			// not first or last element
-			text += ", ";
-		} else if (weatherIdx == weathers.length - 1) {
-			// last element
-			text += " & ";
-		}
-		text += weathers[weatherIdx];
-	}
-
-	return text;
+	imgUrl += (icon + ".jpg");
+	return imgUrl
 }
 
 function updateNotif() {
