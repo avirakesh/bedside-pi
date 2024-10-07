@@ -10,63 +10,69 @@
 -->
 
 <html>
-	<head>
-		<title>Clock</title>
+    <head>
+        <title>Clock</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-		<link rel="stylesheet" href="assets/css/style.css" />
-		<link rel="stylesheet" href="assets/css/weather-icons-lite.min.css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Raleway"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="assets/css/weather-icons-lite.min.css" />
 
-		<script type="text/javascript" src="assets/js/jquery-3.1.0.min.js"></script>
-		<script type="text/javascript" src="assets/js/script.js"></script>
+        <script
+            type="text/javascript"
+            src="assets/js/jquery-3.1.0.min.js"
+        ></script>
+        <script type="text/javascript" src="assets/js/script.js"></script>
 
-		<meta name="theme-color" content="#121212" />
+        <meta name="theme-color" content="#121212" />
 
-		<link rel="icon" sizes="192x192" href="/assets/images/favicon.png" />
-		<link rel="apple-touch-icon" href="/assets/images/favicon.png" />
-		</head>
-		
-		<body>
-		<img src="assets/images/bg/img_1.jpg" class="background-img shown" />
-		<img src="assets/images/bg/img_1.jpg" class="background-img hidden" />;
+        <link rel="icon" sizes="192x192" href="/assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
+    </head>
 
-		<div class="img-filter-div">
-			<div>
-				<!-- &nbsp; -->
-			</div>
-		</div>
+    <body>
+        <img src="assets/images/bg/img_1.jpg" class="background-img shown" />
+        <img src="assets/images/bg/img_1.jpg" class="background-img hidden" />;
 
-		<div class="clock-container">
-			<div class="clock" id="hours">00</div>
-			<div class="clock dots">:</div>
-			<div class="clock" id="minutes">00</div>
-			<div class="clock" id="seconds">00</div>
-			<div class="clock" id="am-pm">AM</div>
-			<br />
-			<div class="date-div" id="day">Sun,</div>
-			<div class="date-div" id="date">00</div>
-			<div class="date-div" id="month">Jan</div>
-			<div class="date-div" id="year">0000</div>
-		</div>
+        <div class="img-filter-div">
+            <div>
+                <!-- &nbsp; -->
+            </div>
+        </div>
 
-		<!-- Comment out the div below to remove weather -->
-		<div class="weather-container">
-			<div class="weather-icon"></div>
-			<div class="temp-div"><span class="temp-span">00</span> &deg;C</div>
-			<div class="feels-like-div">
-				<span class="feels-like-span">00</span> &deg;C
-			</div>
-			<div class="weather-summary-div">Mostly Cloudy</div>
-			<div class="preci-div">
-				<i class="wi wi-umbrella"></i>
-				<span class="preci-span">0%</span>
-			</div>
-			<br />
-			<div class="alerts-div"></div>
-			</div>
+        <div class="clock-container">
+            <div class="clock" id="hours">00</div>
+            <div class="clock dots">:</div>
+            <div class="clock" id="minutes">00</div>
+            <div class="clock" id="seconds">00</div>
+            <div class="clock" id="am-pm">AM</div>
+            <br />
+            <div class="date-div" id="day">Sun,</div>
+            <div class="date-div" id="date">00</div>
+            <div class="date-div" id="month">Jan</div>
+            <div class="date-div" id="year">0000</div>
+        </div>
 
-		<div class="notif-container">
-			<ul class="notif-list"></ul>
-			</div>
-	</body>
+        <!-- Comment out the div below to remove weather -->
+        <div class="weather-container">
+            <div class="weather-icon"></div>
+            <div class="temp-div"><span class="temp-span">00</span> &deg;C</div>
+            <div class="feels-like-div">
+                <span class="feels-like-span">00</span> &deg;C
+            </div>
+            <div class="weather-summary-div">Mostly Cloudy</div>
+            <div class="preci-div">
+                <i class="wi wi-umbrella"></i>
+                <span class="preci-span">0%</span>
+            </div>
+            <br />
+            <div class="alerts-div"></div>
+        </div>
+
+        <div class="notif-container">
+            <ul class="notif-list"></ul>
+        </div>
+    </body>
 </html>
