@@ -1,18 +1,18 @@
 weatherPrefs:
-  location:
-    latitude: '65.077739'
-    longitude: '-21.418135'
+    location:
+        latitude: "65.077739"
+        longitude: "-21.418135"
 
-  # To obtain an API key, sign up at
-  # ------------------------------
-  # https://pirateweather.net/
-  # ------------------------------
-  apiKey: 'your_api_key'
+    # To obtain an API key, sign up at
+    # ------------------------------
+    # https://pirateweather.net/
+    # ------------------------------
+    apiKey: "your_api_key"
 
-  # The units to use for various measurements.  Options include:
-  # ca: SI, with Wind Speed and Wind Gust in kilometers per hour.
-  # uk: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
-  # us: Imperial units
-  # si: SI units
-  # Taken from https://docs.pirateweather.net/en/latest/API/
-  units: si
+    # The units to use for various measurements.  Options include:
+    # ca: SI, with Wind Speed and Wind Gust in kilometers per hour.
+    # uk: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
+    # us: Imperial units
+    # si: SI units
+    # Taken from https://docs.pirateweather.net/en/latest/API/
+    units: "si"

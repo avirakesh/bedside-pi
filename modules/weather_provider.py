@@ -1,3 +1,12 @@
+"""
+----------------------------------------------------------------------------
+"THE BEER-WARE LICENSE" (Revision 42):
+AvichalRakesh wrote this file.  As long as you retain this notice you
+can do whatever you want with this stuff. If we meet some day, and you think
+this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
+----------------------------------------------------------------------------
+"""
+
 import json
 from string import Template
 
@@ -21,6 +30,12 @@ class WeatherProvider:
         }
 
     def get_current_weather(self) -> tuple[bool, dict]:
+        """
+        Retrieves the current weather information.
+
+        Returns:
+            A tuple containing a boolean indicating success and the weather data.
+        """
         r = httpx.get(_WEATHER_URL.format(**self._url_params), params=self._params)
         if r.status_code != httpx.codes.OK:
             print("Error getting weather.")
