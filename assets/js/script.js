@@ -43,6 +43,11 @@ $(function () {
     if (clock24hrs) {
         $("#am-pm").hide();
     }
+
+    $(".nightout-toggle-container").click(function () {
+        toggleNightout();
+    });
+
     startTime();
 });
 
@@ -237,4 +242,18 @@ function parseNotif(data) {
     }
 
     $(".notif-list").html(html);
+}
+
+function toggleNightout() {
+    if ($(".nightout-filter").css("opacity") == 0) {
+        $(".nightout-filter").css("opacity", 0.85);
+        $(".nightout-toggle-container").html(
+            '<span class="blackout-toggle"><i class="wi wi-darksky-clear-night"></i></span>'
+        );
+    } else {
+        $(".nightout-filter").css("opacity", 0);
+        $(".nightout-toggle-container").html(
+            '<span class="blackout-toggle"><i class="wi wi-darksky-clear-day"></i></span>'
+        );
+    }
 }
