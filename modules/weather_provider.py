@@ -46,7 +46,7 @@ class WeatherProvider:
         out = {}
 
         res = json.loads(r.text)
-        print(json.dumps(res, indent=4))
+
         out["summary"] = res["currently"]["summary"]
         out["icon"] = res["currently"]["icon"]
         out["temp"] = res["currently"]["temperature"]
@@ -71,7 +71,7 @@ class WeatherProvider:
                 alerts.append(alert["title"])
             out["alerts"] = alerts
 
-        print(json.dumps(out, indent=4))
+
         return (True, out)
 
     @staticmethod
