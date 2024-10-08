@@ -1,4 +1,5 @@
 # BedSide Pi
+
 Convert your Raspberry Pi into a smart Bedside Clock.
 
 ![BedSide Pi Screenshot](screenshot/img.png)
@@ -7,44 +8,59 @@ Convert your Raspberry Pi into a smart Bedside Clock.
 over to python, which should hopefully have better long term maintainability than
 Node.js did.** _(Famous last words)_
 
-~~**UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with [Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/apache)**~~
+~~**UPDATE: bedside-pi has been updated to use [Node.js](https://nodejs.org/en/) with
+[Socket.io](http://socket.io/) rather than Apache with long polling. However, you can still
+access the [Apache Version](https://github.com/avirakesh/bedside-pi/tree/apache)**~~
 
 ## General Info
+
 BedSide Pi provides information at a glance.
-- Time (Who would've thunk?)
-- Current Weather (Optional)
+
+-   Time (Who would've thunk?)
+-   Current Weather (Optional)
 
 ### Requirements
+
 BedSide Pi requires a bare minimum of
-- Raspberry Pi (Tested on RPi 3b and RPi 4b, your mileage may vary) running Raspbian.
-- A screen to display the information
-  - Technically, does not have to be the Raspberry PI. Any browser that can
-    access the Raspberry Pi's IP will do..
+
+-   Raspberry Pi (Tested on RPi 3b and RPi 4b, your mileage may vary) running Raspbian.
+-   A screen to display the information
+    -   Technically, does not have to be the Raspberry PI. Any browser that can
+        access the Raspberry Pi's IP will do..
 
 #### Optional Items
-- API Key from [PirateWeather](https://pirateweather.net/)
 
+-   API Key from [PirateWeather](https://pirateweather.net/)
 
 ## Setting Things Up
-**Note: This process assumes you have a Raspberry Pi 4. If you have some other model, or are on a different machine, you might have to change a few things.**
+
+**Note: This process assumes you have a Raspberry Pi 4. If you have some other model, or are on a
+different machine, you might have to change a few things.**
 
 #### 1. Set up Python
 
 1. Install Python
 
-    Python comes built in with Raspbian distribution. Just make sure you have a reasonably new version of Python 3.
+    Python comes built in with Raspbian distribution. Just make sure you have a reasonably new
+    version of Python 3.
 
     Python version can be checked by running
+
     ```sh
     $ python --version
     ```
-    For some dependencies (namely fastapi) you might need CPython symbols, which can be installed with
+
+    For some dependencies (namely fastapi) you might need CPython symbols, which can be installed
+    with
+
     ```sh
     $ sudo apt install python3.11-dev
     ```
+
     where `3.11` should be replaced with the specific version of python you have installed.
 
     For reference, these are the versions I have on my RPi 4b:
+
     ```sh
     $ python --version
     Python 3.11.2
@@ -60,9 +76,11 @@ BedSide Pi requires a bare minimum of
     with each other.
 
     One no-frills virtual environment is `venv`, which can be installed using:
+
     ```sh
     $ sudo apt install python3.11-venv
     ```
+
     Once again, replace `3.11` with whatever python version you have installed
     on your system.
 
@@ -80,26 +98,33 @@ BedSide Pi requires a bare minimum of
     for `bedside-pi`.
 
     If you chose `venv` from above, the virtual environment can be created as:
+
     ```sh
     $ cd ~/projects/bedside-pi
     $ python -m venv env # creates an env/ directory containing the virtual environment.
     ```
+
     This needs only be done once.
 
     Once the virtual environment is created, you can activate the environment by running:
+
     ```sh
     $ cd ~/projects/bedside-pi
     $ . env/bin/activate # activates the virtual environment for this terminal session only.
     ```
+
     This would need to be done for every new terminal session.
 
     You can check that your virtual environment is active by looking at the
     beginning of your terminal prompt, which will look something like this if
     it is activated:
+
     ```sh
     (env) user@hostname:~/projects/bedside-pi$`
     ```
+
     Or, you can run `which python` and check if it points to your environment:
+
     ```sh
     pi@bedsidepi:~/projects/bedside-pi $ which python # environment NOT active
     /usr/bin/python # system Python
@@ -121,22 +146,23 @@ BedSide Pi requires a bare minimum of
 
 4. **(Optional)** Change to 24-hr Clock:
 
-    Go to [assets/js/script.js](assets/js/script.js) on your server, and change `clock24hrs` to `true`.
-
+    Go to [assets/js/script.js](assets/js/script.js) on your server, and change `clock24hrs` to
+    `true`.
 
 #### 3. Setting up weather (or removing it)
 
-  * Setting up weather:
+-   Setting up weather:
+
     1. Sign up and get an API key from [PirateWeather](https://pirateweather.net/)
     2. Open [`user_prefs.yaml`](user_prefs.yaml)
     3. Copy the API key from [PirateWeather](https://pirateweather.net/) to `apiKey`
     4. Update `latitude` and `longitude` with your location.
-    5. (Optional) Open [`assets/js/script.js`](assets/js/script.js) on your web server and set `weatherInterval`
-       which is how frequently the weather will be updated (in minutes).
-       - NOTE: It might seem obvious, but weather does not change very frequently, so there is
-         little need to refresh it every other minute.
+    5. (Optional) Open [`assets/js/script.js`](assets/js/script.js) on your web server and set
+       `weatherInterval` which is how frequently the weather will be updated (in minutes).
+        - NOTE: It might seem obvious, but weather does not change very frequently, so there is
+          little need to refresh it every other minute.
 
-  * Removing weather:
+-   Removing weather:
     1. Open [`views/index.html`](views/index.html) on your web server
     2. Comment out the div which contains weather information
     3. Open [`assets/js/script.js`](assets/js/script.js) on your web server
@@ -145,6 +171,7 @@ BedSide Pi requires a bare minimum of
 #### 4. Running `bedside-pi`:
 
 To run `bedside-pi`, use the following commands:
+
 ```sh
 $ cd ~/projects/bedside-pi
 $ . env/bin/activate # (optional) for venv users. Use whatever your virtual environment command is.
@@ -161,36 +188,43 @@ Thankfully that is easy enough to do with `crontab`.
 
 1. First create a script to run `bedside-pi`, for example `~/run_bedside_pi.sh`.
 
-   It could look something like:
-   ```sh
-   #!/bin/bash
+    It could look something like:
+
+    ```sh
+    #!/bin/bash
 
     cd ${HOME}/projects/bedside-pi
     . ./env/bin/activate
 
     fastapi run server.py
-   ```
-   Make sure to give it execute permissions with `chmod +x ~/run_bedside_pi.sh`.
+    ```
+
+    Make sure to give it execute permissions with `chmod +x ~/run_bedside_pi.sh`.
 
 2. Add `crontab` entry to start `bedside-pi` on boot
 
-   ```sh
-   $ crontab -e
-   ```
-   This will open the crontab file in your default text editor.
+    ```sh
+    $ crontab -e
+    ```
+
+    This will open the crontab file in your default text editor.
 
     Add the following line:
+
     ```
     @reboot /home/pi/run_bedside_pi.sh >> /home/pi/bedside_pi.log
     ```
+
     This will run the script on boot and log output to `~/bedside_pi.log`.
 
 3. [Optional] Run chrome in kiosk mode on boot:
 
     Add the following line to the crontab file:
+
     ```
     @reboot sleep 20 && chromium-browser --display=:0 --kiosk http://localhost:8000 >> /home/pi/chromium.log
     ```
+
     This will start Chromium in kiosk mode on boot, pointing to your local BedSide Pi instance.
     The `sleep 20` lets the bedside-pi script start before Chromium tries to connect.
 
@@ -203,16 +237,19 @@ Thankfully that is easy enough to do with `crontab`.
 Using `bedside-pi` is simple: Use your eyeballs to look at it!
 
 However, there are two ways to interact with the bedside display:
+
 1. Tapping the weather will fetch new data and update the display with
    newest weather information.
-3. Tapping the sun/moon icon on the bottom right will toggle light's out mode,
+2. Tapping the sun/moon icon on the bottom right will toggle light's out mode,
    which dims the screen (while keeping the clock barely visible).
-   - Note that for most LCD monitors, this won't completely turn off the
-     backlight, but it should significantly reduce the the light produced by
-     the screen.
+    - Note that for most LCD monitors, this won't completely turn off the
+      backlight, but it should significantly reduce the the light produced by
+      the screen.
 
 ## License
 
 "THE BEER-WARE LICENSE" (Revision 42):
 
-AvichalRakesh  wrote this project. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return. Avichal Rakesh
+Avichal Rakesh wrote this project. As long as you retain this notice you can do whatever you want
+with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer
+in return. Avichal Rakesh
