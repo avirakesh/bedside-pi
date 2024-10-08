@@ -35,7 +35,9 @@ class UserPrefs:
             raise KeyError(f"No 'enabled' found in 'weatherPrefs' in {self.yaml_path}")
 
         if "refreshInterval" not in weather_prefs:
-            raise KeyError(f"No 'refreshInterval' found in 'weatherPrefs' in {self.yaml_path}")
+            raise KeyError(
+                f"No 'refreshInterval' found in 'weatherPrefs' in {self.yaml_path}"
+            )
 
         if "location" not in weather_prefs:
             raise KeyError(f"No 'location' found in 'weatherPrefs' in {self.yaml_path}")
@@ -61,7 +63,9 @@ class UserPrefs:
         view_prefs = self._prefs["viewPrefs"]
 
         if "use24HrClock" not in view_prefs:
-            raise KeyError(f"No 'use24HrClock' found in 'viewPrefs' in {self.yaml_path}")
+            raise KeyError(
+                f"No 'use24HrClock' found in 'viewPrefs' in {self.yaml_path}"
+            )
 
         if "showSeconds" not in view_prefs:
             raise KeyError(f"No 'showSeconds' found in 'viewPrefs' in {self.yaml_path}")
@@ -70,14 +74,17 @@ class UserPrefs:
             raise KeyError(f"No 'days' found in 'viewPrefs' in {self.yaml_path}")
 
         if len(view_prefs["days"]) != 7:
-            raise ValueError(f"Expected 7 days, found {len(view_prefs['days'])} in 'viewPrefs.days' in {self.yaml_path}")
+            raise ValueError(
+                f"Expected 7 days, found {len(view_prefs['days'])} in 'viewPrefs.days' in {self.yaml_path}"
+            )
 
         if "months" not in view_prefs:
             raise KeyError(f"No 'months' found in 'viewPrefs' in {self.yaml_path}")
 
         if len(view_prefs["months"]) != 12:
-            raise ValueError(f"Expected 12 months, found {len(view_prefs['months'])} in 'viewPrefs.months' in {self.yaml_path}")
-
+            raise ValueError(
+                f"Expected 12 months, found {len(view_prefs['months'])} in 'viewPrefs.months' in {self.yaml_path}"
+            )
 
     @property
     def weather(self):
@@ -91,5 +98,5 @@ class UserPrefs:
             "clock24hrs": self._prefs["viewPrefs"]["use24HrClock"],
             "showSeconds": self._prefs["viewPrefs"]["showSeconds"],
             "days": self._prefs["viewPrefs"]["days"],
-            "months": self._prefs["viewPrefs"]["months"]
+            "months": self._prefs["viewPrefs"]["months"],
         }
