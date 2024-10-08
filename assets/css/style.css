@@ -182,7 +182,7 @@ body {
     max-height: 35px;
 }
 
-.nightout-toggle-container {
+.lights-toggle-container {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -191,22 +191,22 @@ body {
     margin: 35px;
 }
 
-.nightout-toggle-img {
+.lights-toggle-img {
     height: 35px;
     width: 35px;
 }
 
-#nightout-toggle-off {
+#lights-toggle-off {
     opacity: 0.5;
 }
 
-.night-toggle-div {
+.lights-toggle-div {
     display: inline-block;
     height: 35px;
     width: 35px;
 }
 
-.nightout-filter {
+.lights-filter {
     position: absolute;
     top: 0;
     left: 0;

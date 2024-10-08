@@ -39,8 +39,8 @@ $(function () {
         $("#seconds").hide();
     }
 
-    $(".nightout-toggle-container").click(function () {
-        toggleNightout();
+    $(".lights-toggle-container").click(function () {
+        toggleLights();
     });
 
     startTime();
@@ -245,16 +245,18 @@ function parseNotif(data) {
     $(".notif-list").html(html);
 }
 
-function toggleNightout() {
-    if ($(".nightout-filter").css("opacity") == 0) {
-        $(".nightout-filter").css("opacity", 0.85);
+function toggleLights() {
+    if ($(".lights-filter").css("opacity") == 0) {
+        $(".lights-filter").css("opacity", 0.85);
 
-        $(".night-toggle-div").html(lightsToggleOff);
-        $(".night-toggle-div").css("opacity", 0.5);
+        $(".lights-toggle-div").html(lightsToggleOff);
+        $(".lights-toggle-div").css("opacity", 0.5);
+        $(".lights-toggle-img").css("opacity", 0.5);
     } else {
-        $(".nightout-filter").css("opacity", 0);
+        $(".lights-filter").css("opacity", 0);
 
-        $(".night-toggle-div").html(lightsToggleOn);
-        $(".night-toggle-div").css("opacity", 1);
+        $(".lights-toggle-div").html(lightsToggleOn);
+        $(".lights-toggle-div").css("opacity", 1);
+        $(".lights-toggle-img").css("opacity", 1);
     }
 }
