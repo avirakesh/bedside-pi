@@ -191,6 +191,21 @@ body {
     margin: 35px;
 }
 
+.nightout-toggle-img {
+    height: 35px;
+    width: 35px;
+}
+
+#nightout-toggle-off {
+    opacity: 0.5;
+}
+
+.night-toggle-div {
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+}
+
 .nightout-filter {
     position: absolute;
     top: 0;

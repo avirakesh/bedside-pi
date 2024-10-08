@@ -17,6 +17,11 @@ var year = -1;
 
 var lastWeather = 0;
 
+var lightsToggleOn =
+    '<svg stroke="#FFF" fill="#FFF" stroke-width="0" viewBox="0 0 24 24" class="text-theme-800 dark:text-theme-200 w-8 h-8 cursor-pointer" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"></path></svg>';
+var lightsToggleOff =
+    '<svg stroke="#FFF" fill="#FFF" stroke-width="0" viewBox="0 0 24 24" class="text-theme-800 dark:text-theme-200 w-8 h-8 cursor-pointer" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"></path></svg>';
+
 $(function () {
     if (weatherEnabled) {
         $(".weather-container").click(function () {
@@ -243,13 +248,13 @@ function parseNotif(data) {
 function toggleNightout() {
     if ($(".nightout-filter").css("opacity") == 0) {
         $(".nightout-filter").css("opacity", 0.85);
-        $(".nightout-toggle-container").html(
-            '<span class="blackout-toggle"><i class="wi wi-darksky-clear-night"></i></span>'
-        );
+
+        $(".night-toggle-div").html(lightsToggleOff);
+        $(".night-toggle-div").css("opacity", 0.5);
     } else {
         $(".nightout-filter").css("opacity", 0);
-        $(".nightout-toggle-container").html(
-            '<span class="blackout-toggle"><i class="wi wi-darksky-clear-day"></i></span>'
-        );
+
+        $(".night-toggle-div").html(lightsToggleOn);
+        $(".night-toggle-div").css("opacity", 1);
     }
 }
