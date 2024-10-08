@@ -157,16 +157,15 @@ different machine, you might have to change a few things.**
     2. Open [`user_prefs.yaml`](user_prefs.yaml)
     3. Copy the API key from [PirateWeather](https://pirateweather.net/) to `apiKey`
     4. Update `latitude` and `longitude` with your location.
-    5. (Optional) Open [`assets/js/script.js`](assets/js/script.js) on your web server and set
-       `weatherInterval` which is how frequently the weather will be updated (in minutes).
+    5. (Optional) Set `refreshInterval` which is how frequently the weather will be updated
+       (in minutes).
         - NOTE: It might seem obvious, but weather does not change very frequently, so there is
           little need to refresh it every other minute.
 
 -   Removing weather:
-    1. Open [`views/index.html`](views/index.html) on your web server
-    2. Comment out the div which contains weather information
-    3. Open [`assets/js/script.js`](assets/js/script.js) on your web server
-    4. Follow the comments at line 77
+
+    1. Open [`user_prefs.yaml`](user_prefs.yaml)
+    2. Set `enabled` under `weatherPrefs` to `False`
 
 #### 4. Running `bedside-pi`:
 
@@ -234,12 +233,18 @@ Thankfully that is easy enough to do with `crontab`.
 
 ## Using `bedside-pi`
 
-Using `bedside-pi` is simple: Use your eyeballs to look at it!
+There are a few options to customize `bedside-pi` under [user_prefs.yaml](user_prefs.yaml):
+    - `use24HrClock`: Use 24-hour format instead of AM/PM.
+    - `showSeconds`: Show seconds on the clock display.
+    - `days`: List of days to be used. Change to whatever word/language you want displayed.
+    - `months`: List of months to be used. Change to whatever word/language you want displayed.
 
-However, there are two ways to interact with the bedside display:
+Once `bedside-pi` is running, using it is simple: Use your eyeballs to look at it!
+
+However, there are a few interaction in the UI:
 
 1. Tapping the weather will fetch new data and update the display with
-   newest weather information.
+   latest weather information.
 2. Tapping the lights toggle on the bottom right will toggle lights out mode,
    which dims the screen (while keeping the clock barely visible).
     - Note that for most LCD monitors, this won't turn off the backlight, but
