@@ -144,11 +144,6 @@ different machine, you might have to change a few things.**
     $ pip install -r requirements.txt
     ```
 
-4. **(Optional)** Change to 24-hr Clock:
-
-    Go to [assets/js/script.js](assets/js/script.js) on your server, and change `clock24hrs` to
-    `true`.
-
 #### 3. Setting up weather (or removing it)
 
 -   Setting up weather:
@@ -216,7 +211,7 @@ Thankfully that is easy enough to do with `crontab`.
 
     This will run the script on boot and log output to `~/bedside_pi.log`.
 
-3. [Optional] Run chrome in kiosk mode on boot:
+3. (Optional) Run chrome in kiosk mode on boot:
 
     Add the following line to the crontab file:
 
@@ -233,11 +228,13 @@ Thankfully that is easy enough to do with `crontab`.
 
 ## Using `bedside-pi`
 
-There are a few options to customize `bedside-pi` under [user_prefs.yaml](user_prefs.yaml):
-    - `use24HrClock`: Use 24-hour format instead of AM/PM.
-    - `showSeconds`: Show seconds on the clock display.
-    - `days`: List of days to be used. Change to whatever word/language you want displayed.
-    - `months`: List of months to be used. Change to whatever word/language you want displayed.
+There are a few options to customize `bedside-pi` in [`user_prefs.yaml`](user_prefs.yaml):
+
+-   `use24HrClock`: Use 24-hour format instead of AM/PM.
+-   `showSeconds`: Show seconds on the clock display.
+-   `showLightsToggle`: Show button to toggle lights on/off.
+-   `days`: List of days to be used. Change to whatever word/language you want displayed.
+-   `months`: List of months to be used. Change to whatever word/language you want displayed.
 
 Once `bedside-pi` is running, using it is simple: Use your eyeballs to look at it!
 
@@ -247,6 +244,7 @@ However, there are a few interaction in the UI:
    latest weather information.
 2. Tapping the lights toggle on the bottom right will toggle lights out mode,
    which dims the screen (while keeping the clock barely visible).
+    - This will only show up if `showLightsToggle` is set to `True`.
     - Note that for most LCD monitors, this won't turn off the backlight, but
       it should significantly reduce the the light produced by the screen.
 

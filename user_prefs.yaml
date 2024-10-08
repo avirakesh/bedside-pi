@@ -30,6 +30,9 @@ viewPrefs:
     # Set to False to hide seconds
     showSeconds: True
 
+    # Set to False to remove lights toggle
+    showLightsToggle: True
+
     # Update to whatever language you prefer. Will be displayed as is.
     # Order is important
     days:

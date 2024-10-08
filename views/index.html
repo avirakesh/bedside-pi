@@ -40,6 +40,12 @@
                 false
             {%- endif -%};
 
+            var showLightsToggle = {% if prefs.showLightsToggle -%}
+                true
+            {%- else -%}
+                false
+            {%- endif -%};
+
             var days = [
                 {% for day in prefs.days -%}
                 "{{day}}",

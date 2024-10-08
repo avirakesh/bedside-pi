@@ -39,9 +39,13 @@ $(function () {
         $("#seconds").hide();
     }
 
-    $(".lights-toggle-container").click(function () {
-        toggleLights();
-    });
+    if (showLightsToggle) {
+        $(".lights-toggle-container").click(function () {
+            toggleLights();
+        });
+    } else {
+        $(".lights-toggle-container").hide();
+    }
 
     startTime();
 });

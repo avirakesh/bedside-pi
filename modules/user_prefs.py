@@ -70,6 +70,9 @@ class UserPrefs:
         if "showSeconds" not in view_prefs:
             raise KeyError(f"No 'showSeconds' found in 'viewPrefs' in {self.yaml_path}")
 
+        if "showLightsToggle" not in view_prefs:
+            raise KeyError(f"No 'showLightsToggle' found in 'viewPrefs' in {self.yaml_path}")
+
         if "days" not in view_prefs:
             raise KeyError(f"No 'days' found in 'viewPrefs' in {self.yaml_path}")
 
@@ -97,6 +100,7 @@ class UserPrefs:
             "weatherInterval": self._prefs["weatherPrefs"]["refreshInterval"],
             "clock24hrs": self._prefs["viewPrefs"]["use24HrClock"],
             "showSeconds": self._prefs["viewPrefs"]["showSeconds"],
+            "showLightsToggle": self._prefs["viewPrefs"]["showLightsToggle"],
             "days": self._prefs["viewPrefs"]["days"],
             "months": self._prefs["viewPrefs"]["months"],
         }
