@@ -1,4 +1,10 @@
 weatherPrefs:
+    # Set to False to disable weather.
+    enabled: True
+
+    # Time after which the weather data should be refreshed
+    refreshInterval: 10
+
     location:
         latitude: "65.077739"
         longitude: "-21.418135"
@@ -16,3 +22,37 @@ weatherPrefs:
     # si: SI units
     # Taken from https://docs.pirateweather.net/en/latest/API/
     units: "si"
+
+viewPrefs:
+    # Set to False to use 12hr clock
+    use24HrClock: False
+
+    # Set to False to hide seconds
+    showSeconds: True
+
+    # Update to whatever language you prefer. Will be displayed as is.
+    # Order is important
+    days:
+        - Sun
+        - Mon
+        - Tue
+        - Wed
+        - Thu
+        - Fri
+        - Sat
+
+    # Update to whatever language you prefer. Will be displayed as is.
+    # Order is important
+    months:
+        - Jan
+        - Feb
+        - Mar
+        - Apr
+        - May
+        - Jun
+        - Jul
+        - Aug
+        - Sep
+        - Oct
+        - Nov
+        - Dec

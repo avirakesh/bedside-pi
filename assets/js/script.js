@@ -15,33 +15,23 @@ var date = -1;
 var month = -1;
 var year = -1;
 
-var weatherInterval = 10; /* Set weather refresh interval (in minutes) */
 var lastWeather = 0;
-var clock24hrs = false; /* Change to true for 24 hr clock */
-
-var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-var months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-];
 
 $(function () {
-    $(".weather-container").click(function () {
-        updateWeather();
-    });
+    if (weatherEnabled) {
+        $(".weather-container").click(function () {
+            updateWeather();
+        });
+    } else {
+        $(".weather-container").css("visibility", "hidden");
+    }
 
     if (clock24hrs) {
         $("#am-pm").hide();
+    }
+
+    if (!showSeconds) {
+        $("#seconds").hide();
     }
 
     $(".nightout-toggle-container").click(function () {
@@ -74,20 +64,26 @@ function startTime() {
         m = mm;
         $("#minutes").text(checkTime(m));
 
-        // To remove weather, comment out from here...
-        if (lastWeather == 0) {
-            updateWeather();
-        }
+        if (weatherEnabled) {
+            if (lastWeather == 0) {
+                updateWeather();
+            }
 
-        lastWeather = (lastWeather + 1) % weatherInterval;
-        // ... to here
+            lastWeather = (lastWeather + 1) % weatherInterval;
+        }
     }
 
     if (s != ss) {
         s = ss;
-        $("#seconds").text(checkTime(s));
+        if (showSeconds) {
+            $("#seconds").text(checkTime(s));
+        }
 
-        document.title = checkTime(h) + ":" + checkTime(m) + ":" + checkTime(s);
+        var title = checkTime(h) + ":" + checkTime(m);
+        if (showSeconds) {
+            title += ":" + checkTime(s);
+        }
+        window.document.title = title;
     }
 
     t = setTimeout(function () {

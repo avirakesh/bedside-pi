@@ -20,6 +20,39 @@
         <link rel="stylesheet" href="assets/css/style.css" />
         <link rel="stylesheet" href="assets/css/weather-icons-lite.min.css" />
 
+        <script type="text/javascript">
+            var weatherInterval = {{ prefs.weatherInterval }};
+            var weatherEnabled = {% if prefs.weatherEnabled -%}
+                true
+            {%- else -%}
+                false
+            {%- endif -%};
+
+            var clock24hrs = {% if prefs.clock24hrs -%}
+                true
+            {%- else -%}
+                false
+            {%- endif -%};
+
+            var showSeconds = {% if prefs.showSeconds -%}
+                true
+            {%- else -%}
+                false
+            {%- endif -%};
+
+            var days = [
+                {% for day in prefs.days -%}
+                "{{day}}",
+                {% endfor -%}
+            ];
+
+            var months = [
+                {% for month in prefs.months -%}
+                "{{month}}",
+                {% endfor -%}
+            ];
+        </script>
+
         <script
             type="text/javascript"
             src="assets/js/jquery-3.1.0.min.js"
