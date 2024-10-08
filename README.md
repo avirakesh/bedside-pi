@@ -240,11 +240,10 @@ However, there are two ways to interact with the bedside display:
 
 1. Tapping the weather will fetch new data and update the display with
    newest weather information.
-2. Tapping the sun/moon icon on the bottom right will toggle light's out mode,
+2. Tapping the lights toggle on the bottom right will toggle lights out mode,
    which dims the screen (while keeping the clock barely visible).
-    - Note that for most LCD monitors, this won't completely turn off the
-      backlight, but it should significantly reduce the the light produced by
-      the screen.
+    - Note that for most LCD monitors, this won't turn off the backlight, but
+      it should significantly reduce the the light produced by the screen.
 
 ## License
 
