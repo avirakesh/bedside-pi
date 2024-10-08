@@ -222,33 +222,6 @@ function mapWeatherIdToBackgroundImage(icon, isDay) {
     return imgUrl;
 }
 
-function updateNotif() {
-    $.ajax({
-        url: "http://" + window.location.host + "/get-notifications.php",
-        success: function (data) {
-            // console.log(data);
-            parseNotif(data);
-        },
-    });
-}
-
-function parseNotif(data) {
-    //console.log("Data: " + data);
-    var html = "";
-    var time = Math.round(Date.now() / 1000);
-    for (var i = 0; i < data.length; i++) {
-        // console.log(data[i]['package']);
-        html +=
-            '<li class="notif-list-item"><img class="notif-image" src="assets/images/' +
-            data[i]["package"] +
-            ".png?" +
-            time +
-            '"></li>';
-    }
-
-    $(".notif-list").html(html);
-}
-
 function toggleLights() {
     if ($(".lights-filter").css("opacity") == 0) {
         $(".lights-filter").css("opacity", 0.85);

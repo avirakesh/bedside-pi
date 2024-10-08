@@ -148,40 +148,6 @@ body {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.powered-by-div {
-    float: right;
-}
-
-.powered-by-image {
-    max-height: 40px;
-}
-
-.notif-container {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.notif-list {
-    list-style: none;
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-.notif-list-item {
-    display: inline-block;
-    padding: 4px;
-}
-
-.notif-image {
-    max-height: 35px;
-}
-
 .lights-toggle-container {
     position: absolute;
     bottom: 0;
