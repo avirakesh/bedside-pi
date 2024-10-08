@@ -69,7 +69,7 @@ different machine, you might have to change a few things.**
     pip 23.0.1 from /home/pi/projects/bedside-pi/env/lib/python3.11/site-packages/pip (python 3.11)
     ```
 
-2. Set up virtual environment (Optional but recommended)
+2. Set up virtual environment (Optional, but recommended)
 
     It is generally recommended to have virtual environments for different Python projects.
     This allows various python projects to use their own dependency versions without interfering
@@ -92,7 +92,7 @@ different machine, you might have to change a few things.**
 
     For this example, I'll assume the project lives in `~/projects/bedside-pi`.
 
-2. Create a virtual environment (Optional but recommended):
+2. Create a virtual environment (Optional, but recommended):
 
     Use your favorite virtual environment tool to create a virtual environment
     for `bedside-pi`.
@@ -120,7 +120,7 @@ different machine, you might have to change a few things.**
     it is activated:
 
     ```sh
-    (env) user@hostname:~/projects/bedside-pi$`
+    (env) user@hostname:~/projects/bedside-pi$
     ```
 
     Or, you can run `which python` and check if it points to your environment:
