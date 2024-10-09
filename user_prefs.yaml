@@ -23,6 +23,27 @@ weatherPrefs:
     # Taken from https://docs.pirateweather.net/en/latest/API/
     units: "si"
 
+    # Pirate weather does not support multiple languages yet.
+    # As a hack, the UI can use the icon label to set weather description.
+    # This isn't perfect but should do while we wait for PirateWeather to
+    # support other languages.
+    # Uncomment the 'weatherTranslations' block to add your own weather
+    # translation
+
+    # weatherTranslations:
+    #     clear-day: "Soleggiato"
+    #     clear-night: "Notturno sereno"
+    #     rain: "Pioggia"
+    #     snow: "Neve"
+    #     sleet: "Lieve nebbia con pioggia"
+    #     wind: "Vento"
+    #     fog: "Nebbia"
+    #     cloudy: "Nuvoloso"
+    #     partly-cloudy-day: "Parcialmente nuvoloso"
+    #     partly-cloudy-night: "Parcialmente nuvoloso"
+    #     thunderstorm: "Temporale"
+    #     hail: "Grandine"
+
 viewPrefs:
     # Set to False to use 12hr clock
     use24HrClock: False

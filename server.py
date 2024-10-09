@@ -25,7 +25,6 @@ templates = Jinja2Templates(directory="views")
 
 @app.get("/", response_class=HTMLResponse)
 def get_templatized_html(request: Request):
-    print(user_prefs.client_prefs)
     return templates.TemplateResponse(
         request=request, name="index.html", context={"prefs": user_prefs.client_prefs}
     )

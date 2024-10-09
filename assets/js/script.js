@@ -165,6 +165,10 @@ function updateWeather() {
 function parseWeather(data) {
     if (data != "{}") {
         // console.log(data);
+        if (data["icon"] in weatherTranslations) {
+            data["summary"] = weatherTranslations[data["icon"]];
+        }
+
         $(".weather-summary-div").text(data["summary"]);
 
         var timestamp = Math.round(Date.now() / 1000);
