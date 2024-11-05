@@ -46,14 +46,14 @@ different machine, you might have to change a few things.**
 
     Python version can be checked by running
 
-    ```sh
+    ```ShellSession
     $ python --version
     ```
 
     For some dependencies (namely fastapi) you might need CPython symbols, which can be installed
     with
 
-    ```sh
+    ```ShellSession
     $ sudo apt install python3.11-dev
     ```
 
@@ -61,7 +61,7 @@ different machine, you might have to change a few things.**
 
     For reference, these are the versions I have on my RPi 4b:
 
-    ```sh
+    ```ShellSession
     $ python --version
     Python 3.11.2
 
@@ -77,7 +77,7 @@ different machine, you might have to change a few things.**
 
     One no-frills virtual environment is `venv`, which can be installed using:
 
-    ```sh
+    ```ShellSession
     $ sudo apt install python3.11-venv
     ```
 
@@ -99,7 +99,7 @@ different machine, you might have to change a few things.**
 
     If you chose `venv` from above, the virtual environment can be created as:
 
-    ```sh
+    ```ShellSession
     $ cd ~/projects/bedside-pi
     $ python -m venv env # creates an env/ directory containing the virtual environment.
     ```
@@ -108,7 +108,7 @@ different machine, you might have to change a few things.**
 
     Once the virtual environment is created, you can activate the environment by running:
 
-    ```sh
+    ```ShellSession
     $ cd ~/projects/bedside-pi
     $ . env/bin/activate # activates the virtual environment for this terminal session only.
     ```
@@ -119,13 +119,13 @@ different machine, you might have to change a few things.**
     beginning of your terminal prompt, which will look something like this if
     it is activated:
 
-    ```sh
+    ```ShellSession
     (env) user@hostname:~/projects/bedside-pi$
     ```
 
     Or, you can run `which python` and check if it points to your environment:
 
-    ```sh
+    ```ShellSession
     pi@bedsidepi:~/projects/bedside-pi $ which python # environment NOT active
     /usr/bin/python # system Python
 
@@ -140,7 +140,7 @@ different machine, you might have to change a few things.**
     With the virtual environment activated, you can now install the dependencies
     with:
 
-    ```sh
+    ```ShellSession
     $ pip install -r requirements.txt
     ```
 
@@ -166,10 +166,10 @@ different machine, you might have to change a few things.**
 
 To run `bedside-pi`, use the following commands:
 
-```sh
+```ShellSession
 $ cd ~/projects/bedside-pi
 $ . env/bin/activate # (optional) for venv users. Use whatever your virtual environment command is.
-$ fastapi server.py
+$ fastapi run server.py
 ```
 
 This will start the server on port `8000`.
@@ -197,7 +197,7 @@ Thankfully that is easy enough to do with `crontab`.
 
 2. Add `crontab` entry to start `bedside-pi` on boot
 
-    ```sh
+    ```ShellSession
     $ crontab -e
     ```
 
