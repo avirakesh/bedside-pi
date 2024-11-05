@@ -217,7 +217,50 @@ function parseWeather(data) {
 }
 
 function generateIconSpan(icon, isDay) {
-    return '<i class="wi wi-darksky-' + icon + '"></i>';
+    // icons taken from PirateWeather API
+    var iconClass = "";
+    switch (icon) {
+        case "clear-day":
+            iconClass = "wi wi-day-sunny";
+            break;
+        case "clear-night":
+            iconClass = "wi wi-night-clear";
+            break;
+        case "rain":
+            iconClass = isDay ? "wi wi-day-rain" : "wi wi-night-alt-rain";
+            break;
+        case "snow":
+            iconClass = isDay ? "wi wi-day-snow" : "wi wi-night-alt-snow";
+            break;
+        case "sleet":
+            iconClass = isDay ? "wi wi-day-sleet" : "wi wi-night-alt-sleet";
+            break;
+        case "wind":
+            iconClass = isDay ? "wi wi-day-windy" : "wi wi-windy";
+            break;
+        case "fog":
+            iconClass = isDay ? "wi wi-day-fog" : "wi wi-night-fog";
+            break;
+        case "cloudy":
+            iconClass = isDay ? "wi wi-day-cloudy" : "wi wi-night-alt-cloudy";
+            break;
+        case "partly-cloudy-day":
+            iconClass = "wi wi-day-sunny-overcast";
+            break;
+        case "partly-cloudy-night":
+            iconClass = "wi wi-night-alt-partly-cloudy";
+            break;
+        case "hail":
+            iconClass = isDay ? "wi wi-day-hail" : "wi wi-night-alt-hail";
+            break;
+        case "thunderstorm":
+            iconClass = isDay ? "wi wi-day-thunderstorm" : "wi wi-night-alt-thunderstorm";
+            break;
+        case "tornado":
+            iconClass = isDay ? "wi wi-day-tornado" : "wi wi-night-alt-tornado";
+            break;
+    }
+    return "<span class='" + iconClass + "'></span>";
 }
 
 function mapWeatherIdToBackgroundImage(icon, isDay) {
