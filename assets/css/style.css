@@ -119,6 +119,15 @@ body {
 
 .preci-div {
     color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.preci-amount-div {
+    display: inline-block;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 
 .alerts-div {

@@ -9,7 +9,6 @@ this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
 
 import yaml
 
-
 class UserPrefs:
     def __init__(self, yaml_file_path):
         self.yaml_path = yaml_file_path
@@ -52,9 +51,7 @@ class UserPrefs:
             raise KeyError(f"No 'apiKey' found in 'weatherPrefs' in {self.yaml_path}")
 
         if "units" not in weather_prefs:
-            raise KeyError(
-                f"No 'useSIUnits' found in 'weatherPrefs' in '{self.yaml_path}'"
-            )
+            raise KeyError(f"No 'units' found in 'weatherPrefs' in '{self.yaml_path}'")
 
         if "weatherTranslations" in weather_prefs:
             if len(weather_prefs["weatherTranslations"]) != 12:
@@ -107,5 +104,17 @@ class UserPrefs:
             "showLightsToggle": self._prefs["viewPrefs"]["showLightsToggle"],
             "days": self._prefs["viewPrefs"]["days"],
             "months": self._prefs["viewPrefs"]["months"],
-            "weatherTranslations": self._prefs["weatherPrefs"].get("weatherTranslations", {})
+            "weatherTranslations": self._prefs["weatherPrefs"].get(
+                "weatherTranslations", {}
+            ),
+            "precipitationUnits": UserPrefs._get_precipitation_units(
+                self._prefs["weatherPrefs"]["units"]
+            ),
         }
+
+    @staticmethod
+    def _get_precipitation_units(units: str) -> str:
+        if units == "us":
+            return "inch/hr"
+        else:
+            return "mm/hr"

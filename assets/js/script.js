@@ -179,10 +179,11 @@ function parseWeather(data) {
         if (data["precipitation"]) {
             var probability = data["precipitation"]["probability"];
             var amount = data["precipitation"]["amount"];
-            $(".preci-span").text(probability + "% ");
-            $(".preci-div").show();
+            $(".preci-span").text(probability + "%");
+            $(".preci-amount-div").text(amount + " " + precipitationUnits);
+            $(".preci-container").show();
         } else {
-            $(".preci-div").hide();
+            $(".preci-container").hide();
         }
 
         $(".temp-span").text(data["temp"]);

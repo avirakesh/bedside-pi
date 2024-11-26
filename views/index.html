@@ -64,6 +64,8 @@
                 "{{month}}",
                 {% endfor -%}
             ];
+
+            var precipitationUnits = "{{ prefs.precipitationUnits }}";
         </script>
 
         <script
@@ -109,9 +111,12 @@
                 <span class="feels-like-span">00</span> &deg;C
             </div>
             <div class="weather-summary-div">Mostly Cloudy</div>
-            <div class="preci-div">
-                <i class="wi wi-umbrella"></i>
-                <span class="preci-span">0%</span>
+            <div class="preci-container">
+                <div class="preci-div">
+                    <i class="wi wi-umbrella"></i>
+                    <span class="preci-span">0%</span>
+                </div>
+                <div class="preci-amount-div"> 100 mm/hr </div>
             </div>
             <br />
             <div class="alerts-div"></div>

@@ -57,12 +57,10 @@ class WeatherProvider:
         if res["currently"]["precipType"] != "none":
             precipitation = {}
             precipitation["type"] = res["currently"]["precipType"]
-            precipitation["probability"] = res["currently"]["precipProbability"]
-            precipitation["amount"] = (
-                str(res["currently"]["precipIntensity"])
-                + " "
-                + WeatherProvider._get_precipitation_units(self._params["units"])
+            precipitation["probability"] = round(
+                res["currently"]["precipProbability"] * 100, 2
             )
+            precipitation["amount"] = res["currently"]["precipIntensity"]
             out["precipitation"] = precipitation
 
         if "alerts" in res:
@@ -71,12 +69,4 @@ class WeatherProvider:
                 alerts.append(alert["title"])
             out["alerts"] = alerts
 
-
         return (True, out)
-
-    @staticmethod
-    def _get_precipitation_units(units: str) -> str:
-        if units == "us":
-            return "inch/hr"
-        else:
-            return "mm/hr"
