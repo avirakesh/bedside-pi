@@ -54,7 +54,10 @@ class WeatherProvider:
         out["sunrise"] = res["daily"]["data"][0]["sunriseTime"]
         out["sunset"] = res["daily"]["data"][0]["sunsetTime"]
 
-        if res["currently"]["precipType"] != "none":
+        if (
+            res["currently"]["precipType"] != "none"
+            and res["currently"]["precipProbability"] > 0
+        ):
             precipitation = {}
             precipitation["type"] = res["currently"]["precipType"]
             precipitation["probability"] = round(
