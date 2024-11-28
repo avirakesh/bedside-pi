@@ -28,7 +28,7 @@
                 false
             {%- endif -%};
 
-            var weatherTranslations ={
+            var weatherTranslations = {
                 {%- for icon, translation in prefs.weatherTranslations.items() %}
                 "{{ icon }}": "{{ translation }}",
                 {%- endfor %}
@@ -66,6 +66,12 @@
             ];
 
             var precipitationUnits = "{{ prefs.precipitationUnits }}";
+
+            var hideCursor = {% if prefs.hideCursor -%}
+                true
+            {%- else -%}
+                false
+            {%- endif -%};
         </script>
 
         <script

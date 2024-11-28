@@ -80,3 +80,9 @@ viewPrefs:
         - Oct
         - Nov
         - Dec
+
+    # Set to False to disable hiding cursor using CSS {cursor: none;}
+    #   This is a workaround for the fact that the Raspbian's labwc does not
+    #   have an easy way to hide the cursor. Setting this to True will
+    #   hide the cursor while it is on the webpage.
+    cssHideCursor: True

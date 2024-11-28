@@ -90,6 +90,11 @@ class UserPrefs:
                 f"Expected 12 months, found {len(view_prefs['months'])} in 'viewPrefs.months' in {self.yaml_path}"
             )
 
+        if "cssHideCursor" not in view_prefs:
+            raise KeyError(
+                f"No 'cssHideCursor' found in 'viewPrefs' in {self.yaml_path}"
+            )
+
     @property
     def weather(self):
         return self._prefs["weatherPrefs"]
@@ -110,6 +115,7 @@ class UserPrefs:
             "precipitationUnits": UserPrefs._get_precipitation_units(
                 self._prefs["weatherPrefs"]["units"]
             ),
+            "hideCursor": self._prefs["viewPrefs"]["cssHideCursor"],
         }
 
     @staticmethod

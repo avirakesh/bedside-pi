@@ -47,6 +47,10 @@ $(function () {
         $(".lights-toggle-container").hide();
     }
 
+    if (hideCursor) {
+        $("body").addClass("no-cursor");
+    }
+
     startTime();
 });
 

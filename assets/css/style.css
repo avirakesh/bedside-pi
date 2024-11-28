@@ -28,6 +28,10 @@ body {
     -webkit-transition: opacity 1s linear;
 }
 
+.no-cursor {
+    cursor: none;
+}
+
 .hidden {
     opacity: 0;
 }
