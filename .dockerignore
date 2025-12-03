@@ -1,0 +1,8 @@
+.git
+__pycache__
+.env
+screenshot
+.DS_Store
+*.pyc
+*.log
+user_prefs.yaml

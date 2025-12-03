@@ -19,7 +19,7 @@ BedSide Pi provides information at a glance.
 -   Time (Who would've thunk?)
 -   Current Weather (Optional)
 
-### Requirements
+## Requirements
 
 BedSide Pi requires a bare minimum of
 
@@ -27,12 +27,14 @@ BedSide Pi requires a bare minimum of
 -   A screen to display the information
     -   Technically, does not have to be the Raspberry PI. Any browser that can
         access the Raspberry Pi's IP will do..
+-   [Optional] API Key from [PirateWeather](https://pirateweather.net/)
 
-#### Optional Items
+## Setup and Run Bedside Pi
 
--   API Key from [PirateWeather](https://pirateweather.net/)
+<details>
+<summary>Direct Execution</summary>
 
-## Setting Things Up
+### Direct Execution
 
 **Note: This process assumes you have a Raspberry Pi 4. If you have some other model, or are on a
 different machine, you might have to change a few things.**
@@ -169,8 +171,10 @@ To run `bedside-pi`, use the following commands:
 ```ShellSession
 $ cd ~/projects/bedside-pi
 $ . env/bin/activate # (optional) for venv users. Use whatever your virtual environment command is.
-$ fastapi run server.py
+$ fastapi run server.py --user-prefs ./user_prefs.yaml
 ```
+
+**Note**: The path to `user_prefs.yaml` can be provided either via the `--user-prefs` CLI argument or the `USER_PREFS_PATH` environment variable. The CLI argument takes precedence over the environment variable.
 
 This will start the server on port `8000`.
 You can now access the `bedside-pi` UI by navigating to `http://localhost:8000` in any web browser.
@@ -225,6 +229,131 @@ Thankfully that is easy enough to do with `crontab`.
 4. Reboot the Raspberry Pi and wait for `bedside-pi` to start automatically!
 
 #### And that is it, enjoy your BedSide Pi!!
+
+</details>
+
+<details>
+<summary>Docker Execution</summary>
+
+### Docker Execution
+
+To run `bedside-pi` using Docker, where the image is built directly from the GitHub repository, follow these steps:
+
+#### 0. Prerequisites
+*   Docker and Docker Compose installed on your system.
+
+#### 1. Build the Docker Image from GitHub
+
+You can build the Docker image directly from the GitHub repository without cloning it locally.
+Simply run:
+
+```ShellSession
+docker build -t bedside-pi:latest https://github.com/avirakesh/bedside-pi.git
+```
+
+This command will fetch the repository, find the `Dockerfile` at the root, and build the image.
+
+#### 2. Configure `user_prefs.yaml`
+
+The `user_prefs.yaml` file, which contains your API keys and location settings, needs to be mounted into the Docker container at runtime. Ensure you have your desired `user_prefs.yaml` file in a known location on your host system.
+
+Start by copying the [user_prefs.yaml](user_prefs.yaml) to a known location.
+
+#### 3. Setting up weather (or removing it)
+
+-   Setting up weather:
+
+    1. Sign up and get an API key from [PirateWeather](https://pirateweather.net/)
+    2. Open [`user_prefs.yaml`](user_prefs.yaml)
+    3. Copy the API key from [PirateWeather](https://pirateweather.net/) to `apiKey`
+    4. Update `latitude` and `longitude` with your location.
+    5. (Optional) Set `refreshInterval` which is how frequently the weather will be updated
+       (in minutes).
+        - NOTE: It might seem obvious, but weather does not change very frequently, so there is
+          little need to refresh it every other minute.
+
+-   Removing weather:
+
+    1. Open [`user_prefs.yaml`](user_prefs.yaml)
+    2. Set `enabled` under `weatherPrefs` to `False`
+
+#### 4. Run the Container using Docker Compose (Recommended)
+
+1.  Create a `docker-compose.yml` file in a directory of your choice (e.g., `~/bedside-pi-docker`)
+    with the following content.
+
+    ```yaml
+    services:
+    bedside-pi:
+        image: bedside-pi
+        container_name: bedside-pi-app
+        ports:
+        - "8000:8000"
+        volumes:
+        - "./user_prefs.yaml:/config/user_prefs.yaml"
+        environment:
+        USER_PREFS_PATH: /config/user_prefs.yaml
+        restart: unless-stopped
+    ```
+
+2.  Make sure your `user_prefs.yaml` is in the same directory as your
+    `docker-compose.yml` or provide the correct path in the `volumes` section.
+
+3.  Then, navigate to the directory containing your `docker-compose.yml` and `user_prefs.yaml` and run:
+
+    ```ShellSession
+    docker compose up -d
+    ```
+
+    This will start the `bedside-pi` container in detached mode.
+
+4.  To stop the container:
+
+    ```ShellSession
+    docker compose down
+    ```
+
+#### 5. Run the Container directly with Docker (Alternative)
+
+If you prefer not to use Docker Compose, you can run the container directly with the following:
+
+```ShellSession
+docker run -p 8000:8000 \
+    --name bedside-pi-app -d \
+    -v "$(pwd)/user_prefs.yaml:/config/user_prefs.yaml" \
+    -e USER_PREFS_PATH=/config/user_prefs.yaml bedside-pi:latest
+```
+
+*   Replace `$(pwd)/user_prefs.yaml` with the absolute path to your `user_prefs.yaml` file if it's
+    not in the current directory.
+*   The `-e USER_PREFS_PATH=/app/user_prefs.yaml` flag tells the application inside the container
+    where to find the mounted configuration file.
+
+To stop and remove the container:
+
+```ShellSession
+docker stop bedside-pi-app && docker rm bedside-pi-app
+```
+
+Once the container is running (either via Docker Compose or direct Docker run), you can access the `bedside-pi` UI by navigating to `http://localhost:8000` in any web browser.
+
+#### 6. Update docker container to the latest version
+1.  Stop the container if it's currently running:
+    ```ShellSession
+    docker compose down # when using docker compose
+    docker stop bedside-pi-app && docker rm bedside-pi-app # when running directly with docker
+    ```
+
+2.  Rebuild docker image using
+    [Build the Docker Image from GitHub](#1-build-the-docker-image-from-github)
+
+3.  Restart the container, either using
+    [Docker Compose](#4-run-the-container-using-docker-compose-recommended) or
+    [directly](#5-run-the-container-directly-with-docker-alternative).
+
+</details>
+
+---
 
 ## Using `bedside-pi`
 

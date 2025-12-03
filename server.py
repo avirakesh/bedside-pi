@@ -7,6 +7,8 @@ this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
 ----------------------------------------------------------------------------
 """
 
+import argparse
+import os
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -14,7 +16,21 @@ from fastapi.templating import Jinja2Templates
 from modules.user_prefs import UserPrefs
 from modules.weather_provider import WeatherProvider
 
-user_prefs = UserPrefs("user_prefs.yaml")
+parser = argparse.ArgumentParser(description="Run the BedSide Pi server.")
+parser.add_argument(
+    "--user-prefs",
+    type=str,
+    help="Path to the user_prefs.yaml file.",
+)
+args = parser.parse_args()
+
+USER_PREFS_PATH = args.user_prefs or os.environ.get("USER_PREFS_PATH")
+if USER_PREFS_PATH is None:
+    raise ValueError(
+        "USER_PREFS_PATH environment variable or --user-prefs CLI argument is not set. "
+        "Please set it to the path of your user_prefs.yaml file."
+    )
+user_prefs = UserPrefs(USER_PREFS_PATH)
 weather_provider = WeatherProvider(user_prefs)
 
 app = FastAPI()

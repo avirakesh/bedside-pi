@@ -1,0 +1,11 @@
+services:
+  bedside-pi:
+    image: bedside-pi
+    container_name: bedside-pi-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./user_prefs.yaml:/config/user_prefs.yaml"
+    environment:
+      USER_PREFS_PATH: /config/user_prefs.yaml
+    restart: unless-stopped
