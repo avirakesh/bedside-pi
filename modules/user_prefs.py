@@ -7,10 +7,14 @@ this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
 ----------------------------------------------------------------------------
 """
 
+import os
 import yaml
 
 class UserPrefs:
     def __init__(self, yaml_file_path):
+        if not os.path.exists(yaml_file_path) or not os.path.isfile(yaml_file_path):
+            raise ValueError(f"File '{yaml_file_path}' does not exist.")
+
         self.yaml_path = yaml_file_path
         with open(self.yaml_path) as f:
             self._prefs = yaml.safe_load(f)
