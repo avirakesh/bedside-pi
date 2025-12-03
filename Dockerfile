@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim-bookworm
+FROM python:3.14-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 # as mentioned in the README: "For some dependencies (namely fastapi) you might need CPython symbols"
 # We also install git, which is used for cloning
 RUN apt-get update && apt-get install -y \
-    python3.11-dev \
+    python3-dev \
     git \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
