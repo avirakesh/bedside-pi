@@ -27,6 +27,7 @@ class WeatherProvider:
         self._params = {
             "units": user_pref.weather["units"],
             "exclude": "minutely,hourly,hrrr",
+            "lang": user_pref.weather["language"],
         }
 
     def get_current_weather(self) -> tuple[bool, dict]:

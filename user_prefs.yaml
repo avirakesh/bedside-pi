@@ -16,33 +16,74 @@ weatherPrefs:
     apiKey: "your_api_key"
 
     # The units to use for various measurements.  Options include:
-    # ca: SI, with Wind Speed and Wind Gust in kilometers per hour.
-    # uk: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
-    # us: Imperial units
-    # si: SI units
+    #  ca: SI, with Wind Speed and Wind Gust in kilometers per hour.
+    #  uk: SI, with Wind Speed and Wind Gust in miles per hour and visibility are in miles.
+    #  us: Imperial units
+    #  si: SI units
     # Taken from https://docs.pirateweather.net/en/latest/API/
     units: "si"
 
-    # Pirate weather does not support multiple languages yet.
-    # As a hack, the UI can use the icon label to set weather description.
-    # This isn't perfect but should do while we wait for PirateWeather to
-    # support other languages.
-    # Uncomment the 'weatherTranslations' block to add your own weather
-    # translation
+    # The language to use for weather summary. Options include:
+    #  ar: Arabic
+    #  az: Azerbaijani
+    #  be: Belarusian
+    #  bg: Bulgarian
+    #  bn: Bengali
+    #  bs: Bosnian
+    #  ca: Catalan
+    #  cs: Czech
+    #  cy: Welsh
+    #  da: Danish
+    #  de: German
+    #  el: Greek
+    #  en: English (which is the default)
+    #  eo: Esperanto
+    #  es: Spanish
+    #  et: Estonian
+    #  fa: Persian
+    #  fi: Finnish
+    #  fr: French
+    #  ga: Irish
+    #  gd: Gaelic
+    #  he: Hebrew
+    #  hi: Hindi
+    #  hr: Croatian
+    #  hu: Hungarian
+    #  id: Indonesian
+    #  is: Icelandic
+    #  it: Italian
+    #  ja: Japanese
+    #  ka: Georgian
+    #  kn: Kannada
+    #  ko: Korean
+    #  kw: Cornish
+    #  lv: Latvian
+    #  ml: Malayam
+    #  mr: Marathi
+    #  nl: Dutch
+    #  no: Norwegian Bokmål
+    #  pa: Punjabi
+    #  pl: Polish
+    #  pt: Portuguese
+    #  ro: Romanian
+    #  ru: Russian
+    #  sk: Slovak
+    #  sl: Slovenian
+    #  sr: Serbian
+    #  sv: Swedish
+    #  ta: Tamil
+    #  te: Telugu
+    #  tet: Tetum
+    #  tr: Turkish
+    #  uk: Ukrainian
+    #  ur: Urdu
+    #  vi: Vietnamese
+    #  x-pig-latin: Igpay Atinlay
+    #  zh: simplified Chinese
+    #  zh-tw: traditional Chinese
+    # Taken from https://docs.pirateweather.net/en/latest/API/
+    language: "en"
 
-    # weatherTranslations:
-    #     clear-day: "Soleggiato"
-    #     clear-night: "Notturno sereno"
-    #     rain: "Pioggia"
-    #     snow: "Neve"
-    #     sleet: "Lieve nebbia con pioggia"
-    #     wind: "Vento"
-    #     fog: "Nebbia"
-    #     cloudy: "Nuvoloso"
-    #     partly-cloudy-day: "Parcialmente nuvoloso"
-    #     partly-cloudy-night: "Parcialmente nuvoloso"
-    #     thunderstorm: "Temporale"
-    #     hail: "Grandine"
 
 viewPrefs:
     # Set to False to use 12hr clock

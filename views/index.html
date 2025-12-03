@@ -28,13 +28,6 @@
                 false
             {%- endif -%};
 
-            var weatherTranslations = {
-                {%- for icon, translation in prefs.weatherTranslations.items() %}
-                "{{ icon }}": "{{ translation }}",
-                {%- endfor %}
-            }
-
-
             var clock24hrs = {% if prefs.clock24hrs -%}
                 true
             {%- else -%}

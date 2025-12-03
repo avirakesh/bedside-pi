@@ -53,9 +53,8 @@ class UserPrefs:
         if "units" not in weather_prefs:
             raise KeyError(f"No 'units' found in 'weatherPrefs' in '{self.yaml_path}'")
 
-        if "weatherTranslations" in weather_prefs:
-            if len(weather_prefs["weatherTranslations"]) != 12:
-                raise ValueError("'weatherTranslations' must have exactly 12 elements")
+        if "language" not in weather_prefs:
+            raise KeyError(f"No 'language' found in 'weatherPrefs' in {self.yaml_path}")
 
     def _validate_view_prefs(self):
         if "viewPrefs" not in self._prefs:
@@ -109,9 +108,6 @@ class UserPrefs:
             "showLightsToggle": self._prefs["viewPrefs"]["showLightsToggle"],
             "days": self._prefs["viewPrefs"]["days"],
             "months": self._prefs["viewPrefs"]["months"],
-            "weatherTranslations": self._prefs["weatherPrefs"].get(
-                "weatherTranslations", {}
-            ),
             "precipitationUnits": UserPrefs._get_precipitation_units(
                 self._prefs["weatherPrefs"]["units"]
             ),
