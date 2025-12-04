@@ -242,6 +242,10 @@ To run `bedside-pi` using Docker, where the image is built directly from the Git
 #### 0. Prerequisites
 *   Docker and Docker Compose installed on your system.
 
+    ```ShellSession
+    curl -sSL https://get.docker.com | sh
+    ```
+
 #### 1. Build the Docker Image from GitHub
 
 You can build the Docker image directly from the GitHub repository without cloning it locally.
@@ -279,7 +283,7 @@ Start by copying the [user_prefs.yaml](user_prefs.yaml) to a known location.
 
 #### 4. Run the Container using Docker Compose (Recommended)
 
-1.  Create a `docker-compose.yml` file in a directory of your choice (e.g., `~/bedside-pi-docker`)
+1.  Create a `docker-compose.yml` file in a directory of your choice (e.g., `/home/pi/bedside-pi-docker`)
     with the following content.
 
     ```yaml
@@ -350,6 +354,74 @@ Once the container is running (either via Docker Compose or direct Docker run), 
 3.  Restart the container, either using
     [Docker Compose](#4-run-the-container-using-docker-compose-recommended) or
     [directly](#5-run-the-container-directly-with-docker-alternative).
+
+#### 7. (Optional) Run the container on boot
+
+1.  Ensure `docker.service` is enabled in systemd
+    ```ShellSession
+    systemctl enable docker
+    ```
+
+2.  Start container on boot:
+
+    1.  Create `/etc/systemd/system/bedside-pi-docker.service`:
+
+        ```ini
+        [Unit]
+        Description=Bedside Pi Docker Container
+        Requires=docker.service
+        After=docker.service
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        WorkingDirectory=/home/pi/bedside-pi-docker # skip if using 'docker run ...'
+        ExecStart=docker compose up -d # or 'docker run ...'
+        ExecStop=docker compose down # or 'docker stop ...'
+        TimeoutStartSec=0
+
+        [Install]
+        WantedBy=multi-user.target
+        ```
+
+    2.  Reload systemd daemon:
+        ```ShellSession
+        systemctl daemon-reload
+        ```
+
+    3.  Enable the service:
+        ```ShellSession
+        systemctl enable bedside-pi-docker
+        ```
+
+3. Start frontend on boot:
+
+    1.  Create `~/.config/systemd/user/bedside-pi-frontend.service`:
+        ```ini
+        [Unit]
+        Description=Bedside Pi Frontend
+
+        [Service]
+        Type=oneshot
+        RemainAfterExit=yes
+        ExecStartPre=/bin/sleep 60 # wait 60s for docker service and container
+                                   # to boot
+        ExecStart=chromium --display=:0 --kiosk http://localhost:8000
+        TimeoutStartSec=120
+
+        [Install]
+        WantedBy=default.target
+        ```
+
+    2.  Reload systemd daemon:
+        ```ShellSession
+        systemctl --user daemon-reload
+        ```
+
+    3.  Enable the service:
+        ```ShellSession
+        systemctl --user enable bedside-pi-frontend
+        ```
 
 </details>
 
