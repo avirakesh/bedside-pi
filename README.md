@@ -449,10 +449,23 @@ However, there are a few interaction in the UI:
     - Note that for most LCD monitors, this won't turn off the backlight, but
       it should significantly reduce the the light produced by the screen.
 
+## AI Use Disclaimer
+
+All images in this repo were generated using
+[Nano Banana](https://blog.google/products/gemini/updated-image-editing-model/).
+The images were generated using the prompt of the following pattern:
+
+```
+Create a watercolor painting of a cityscape on a [clear|cloudy|etc...] [day|night]
+```
+
 ## License
 
+
+```
 "THE BEER-WARE LICENSE" (Revision 42):
 
-Avichal Rakesh wrote this project. As long as you retain this notice you can do whatever you want
-with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer
-in return. Avichal Rakesh
+Avichal Rakesh wrote this project. As long as you retain this notice you can do
+whatever you want with this stuff. If we meet some day, and you think this stuff
+is worth it, you can buy me a beer in return. Avichal Rakesh
+```

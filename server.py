@@ -7,7 +7,6 @@ this stuff is worth it, you can buy me a beer in return.   Avichal Rakesh
 ----------------------------------------------------------------------------
 """
 
-import argparse
 import os
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -15,6 +14,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from modules.user_prefs import UserPrefs
 from modules.weather_provider import WeatherProvider
+
+USER_PREFS_PATH = os.environ.get("USER_PREFS_PATH")
+if USER_PREFS_PATH is None:
+    raise ValueError(
+        "USER_PREFS_PATH environment variable or --user-prefs CLI argument is not set. "
+        "Please set it to the path of your user_prefs.yaml file."
+    )
 
 # Initialize these outside the main block if they are needed globally
 user_prefs = None
@@ -28,23 +34,6 @@ templates = Jinja2Templates(directory="views")
 @app.on_event("startup")
 async def startup_event():
     global user_prefs, weather_provider
-    # Argument parsing is now optional and only used if server.py is run directly
-    # For Docker, USER_PREFS_PATH will typically come from environment variables.
-    parser = argparse.ArgumentParser(description="Run the BedSide Pi server.")
-    parser.add_argument(
-        "--user-prefs",
-        type=str,
-        help="Path to the user_prefs.yaml file.",
-    )
-    # Parse only known arguments, to avoid conflicts with uvicorn arguments
-    args, unknown = parser.parse_known_args()
-
-    USER_PREFS_PATH = args.user_prefs or os.environ.get("USER_PREFS_PATH")
-    if USER_PREFS_PATH is None:
-        raise ValueError(
-            "USER_PREFS_PATH environment variable or --user-prefs CLI argument is not set. "
-            "Please set it to the path of your user_prefs.yaml file."
-        )
     user_prefs = UserPrefs(USER_PREFS_PATH)
     weather_provider = WeatherProvider(user_prefs)
 
